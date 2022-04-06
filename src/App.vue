@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from '@/components/HelloWorld.vue'
+import WelcomeKitchenSink from '@/components/WelcomeKitchenSink.vue'
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <img alt="Azure Cognitive Services Logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <WelcomeKitchenSink />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
@@ -42,9 +42,9 @@ header {
 }
 
 a,
-.green {
+.blue {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: rgb(0, 120, 215);
   transition: 0.4s;
 }
 
