@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import WelcomeKitchenSink from '@/components/WelcomeKitchenSink.vue'
+import Navbar from "@/components/Navbar.vue"
 </script>
 
 <template>
@@ -10,10 +11,7 @@ import WelcomeKitchenSink from '@/components/WelcomeKitchenSink.vue'
     <div class="wrapper">
       <WelcomeKitchenSink />
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+      <Navbar />
     </div>
   </header>
 
