@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router'
 
 <template>
 	<nav>
-		<RouterLink class="hover:bg-blue-500 hover:ring-blue-500 hover:shadow-md" to="/">Home</RouterLink>
+		<RouterLink class="bg-sky-600 hover:bg-sky-700" to="/">Home</RouterLink>
 		<RouterLink to="/about">About</RouterLink>
 	</nav>
 </template>
