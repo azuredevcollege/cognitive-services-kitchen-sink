@@ -9,8 +9,17 @@ export default defineConfig({
   base: process.env.BASE_PATH ? `/${process.env.BASE_PATH}` : "/",
   plugins: [vue(), vueJsx()],
   resolve: {
-    alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
-    },
+    alias: [
+      {
+        find: "@",
+        replacement: fileURLToPath(new URL("./src", import.meta.url)),
+      },
+      {
+        find: "microsoft-cognitiveservices-speech-sdk",
+        replacement: require.resolve(
+          "microsoft-cognitiveservices-speech-sdk/distrib/browser/microsoft.cognitiveservices.speech.sdk.bundle.js"
+        ),
+      },
+    ],
   },
 });
