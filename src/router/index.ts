@@ -22,6 +22,11 @@ const router = createRouter({
       name: "speech",
       component: () => import("../views/MicrophoneView.vue"),
     },
+    {
+      path: "/face",
+      name: "face",
+      component: () => import("../views/CameraView.vue"),
+    },
   ],
   linkActiveClass: "",
   linkExactActiveClass: "",
