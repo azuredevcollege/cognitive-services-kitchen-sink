@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import WelcomeKitchenSinkView from "@/components/WelcomeKitchenSink.vue";
-import MicrophoneView from "@/views/MicrophoneView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,7 +20,7 @@ const router = createRouter({
     {
       path: "/speech",
       name: "speech",
-      component: MicrophoneView,
+      component: () => import("../views/MicrophoneView.vue"),
     },
   ],
   linkActiveClass: "",
