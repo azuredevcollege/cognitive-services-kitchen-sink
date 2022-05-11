@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, reactive } from "vue";
+import { reactive } from "vue";
 
 import {
   SpeechConfig,
@@ -8,19 +8,19 @@ import {
   SpeechRecognitionEventArgs,
 } from "microsoft-cognitiveservices-speech-sdk";
 
-onMounted(() => {
-  console.log(`the component is now mounted.`);
-
+function startRecording(){
+  console.log("Recording started...")
   navigator.mediaDevices
     .getUserMedia({ audio: true, video: false })
     .then(onStream);
-});
+}
 
 const state = reactive({ text: "" });
 var recognizer: SpeechRecognizer;
 var selectedLanguage = "de-DE";
-const speechApiKey = "6a7021f06ec949d7a650ea641f06b258";
+const speechApiKey = "483d23fec02d4040baeb586f03f0e1c5";
 const region = "westeurope";
+
 function onStream(stream: MediaStream) {
   const speechConfig = SpeechConfig.fromSubscription(speechApiKey, region);
   speechConfig.speechRecognitionLanguage = selectedLanguage;
@@ -30,6 +30,7 @@ function onStream(stream: MediaStream) {
   recognizer.recognized = onRegonitionResult;
   recognizer.startContinuousRecognitionAsync();
 }
+
 function onRegonitionResult(
   sender: any,
   event: SpeechRecognitionEventArgs
@@ -46,5 +47,9 @@ function onChange(e: any) {
 </script>
 
 <template>
+  <button class="btn gap-2" @click="startRecording">
+  <font-awesome-icon icon="microphone" />
+    Start Recording
+  </button>
   {{ state.text }}
 </template>
