@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import { useSettingsStore } from "@/stores/settings";
+const settings = useSettingsStore();
+</script>
+
 <template>
   <br />
   <div class="form-control w-full max-w-xs">
@@ -7,6 +12,7 @@
       >
     </label>
     <input
+      v-model="settings.apikey"
       type="text"
       placeholder="Type here"
       class="input input-bordered w-full max-w-xs"
@@ -24,7 +30,7 @@
         ><strong>Pick your Cognitive Services Region</strong></span
       >
     </label>
-    <select class="select select-bordered">
+    <select class="select select-bordered" v-model="settings.azureregion">
       <option disabled selected>Pick one or type your region</option>
       <option>westeurope</option>
       <option>northeurope</option>

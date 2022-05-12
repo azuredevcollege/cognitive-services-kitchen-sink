@@ -19,6 +19,7 @@
     "daisyui": "^2.13.6",
     "microsoft-cognitiveservices-speech-sdk": "^1.21.0",
     "pinia": "^2.0.13",
+    "pinia-plugin-persistedstate": "^1.5.1",
     "vue": "^3.2.31",
     "vue-router": "^4.0.14"
   },
