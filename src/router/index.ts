@@ -27,6 +27,11 @@ const router = createRouter({
       name: "face",
       component: () => import("../views/CameraView.vue"),
     },
+    {
+      path: "/settings",
+      name: "settings",
+      component: () => import("../views/SettingsView.vue"),
+    },
   ],
   linkActiveClass: "",
   linkExactActiveClass: "",
