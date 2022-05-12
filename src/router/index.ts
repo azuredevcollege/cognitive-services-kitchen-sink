@@ -20,12 +20,12 @@ const router = createRouter({
     {
       path: "/speech",
       name: "speech",
-      component: () => import("../views/MicrophoneView.vue"),
+      component: () => import("../views/SpeechView.vue"),
     },
     {
       path: "/face",
       name: "face",
-      component: () => import("../views/CameraView.vue"),
+      component: () => import("../views/FaceView.vue"),
     },
     {
       path: "/language",
