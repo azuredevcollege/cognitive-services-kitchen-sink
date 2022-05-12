@@ -2,7 +2,6 @@
 import { reactive } from "vue";
 
 var src: MediaStream;
-const video = document.querySelector("video");
 
 function startRecording() {
   console.log("Video recording started...");
@@ -11,13 +10,22 @@ function startRecording() {
     .then(onStream);
 }
 
+function stopRecording() {
+  stream.getTracks().forEach(function (track) {
+    track.stop();
+  });
+}
+
 const state = reactive({ text: "" });
-const faceApiKey = "064ebbbbf4c54aeeb8f3758b7c8c3404";
-const region = "westeurope";
+// const faceApiKey = "";
+// const region = "";
 
 function onStream(stream: MediaStream) {
-  video.play();
-  video.srcObject = stream;
+  const video = document.querySelector("video");
+  if (video) {
+    video.play();
+    video.srcObject = stream;
+  }
 }
 </script>
 
@@ -26,11 +34,9 @@ function onStream(stream: MediaStream) {
     <font-awesome-icon icon="camera" />
     Start Video Recording
   </button>
-  <video
-    autoplay
-    id="player"
-    :srcObject="src"
-    controls
-    type="video/mp4"
-  ></video>
+  <button class="btn gap-2" @click="stopRecording">
+    <font-awesome-icon icon="camera" />
+    Stop Video Recording
+  </button>
+  <video autoplay id="player" type="video/mp4"></video>
 </template>
