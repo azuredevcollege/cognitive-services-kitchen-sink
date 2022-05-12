@@ -28,6 +28,26 @@ const router = createRouter({
       component: () => import("../views/CameraView.vue"),
     },
     {
+      path: "/language",
+      name: "language",
+      component: () => import("../views/LanguageView.vue"),
+    },
+    {
+      path: "/formrecognizer",
+      name: "formrecognizer",
+      component: () => import("../views/FormView.vue"),
+    },
+    {
+      path: "/customvision",
+      name: "customvision",
+      component: () => import("../views/CustomVisionView.vue"),
+    },
+    {
+      path: "/computervision",
+      name: "computervision",
+      component: () => import("../views/ComputerVisionView.vue"),
+    },
+    {
       path: "/settings",
       name: "settings",
       component: () => import("../views/SettingsView.vue"),

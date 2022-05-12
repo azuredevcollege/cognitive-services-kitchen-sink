@@ -34,4 +34,5 @@ function onStream(stream: MediaStream) {
     Start Video Recording
   </button>
   <video autoplay :srcObject="state.stream" type="video/mp4"></video>
+  To dos: Add Face API - Features: age, face features, glasses
 </template>
