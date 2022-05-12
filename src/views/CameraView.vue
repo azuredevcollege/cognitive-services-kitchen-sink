@@ -18,9 +18,6 @@ function stopRecording() {
   state.playing = false;
 }
 
-const faceApiKey = "064ebbbbf4c54aeeb8f3758b7c8c3404";
-const region = "westeurope";
-
 function onStream(stream: MediaStream) {
   state.stream = stream;
   state.playing = true;
