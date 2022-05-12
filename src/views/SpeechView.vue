@@ -18,12 +18,7 @@ function startRecording() {
     .then(onStream);
 }
 
-function stopRecording() {
-  state.stream.getTracks().forEach((track) => track.stop());
-  state.playing = false;
-}
-
-const state = reactive({ text: "", stream: new MediaStream(), playing: false });
+const state = reactive({ text: "" });
 var recognizer: SpeechRecognizer;
 var selectedLanguage = "de-DE";
 
@@ -56,15 +51,11 @@ function onChange(e: any) {
 </script>
 
 <template>
-  <button class="btn gap-2" @click="startRecording" v-if="state.playing">
+  <button class="btn gap-2" @click="startRecording">
     <font-awesome-icon icon="microphone" />
     Start Recording
   </button>
   {{ state.text }}
-  <button v-else class="btn gap-2" @click="stopRecording">
-    <font-awesome-icon icon="camera" />
-    Stop Video Recording
-  </button>
   To dos: Add button where language is selected - translate speech to serveral
   languages (choose from dropdown) - sentiment analysis
 </template>
