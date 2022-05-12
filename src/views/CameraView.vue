@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { reactive } from "vue";
 
-var src: MediaStream;
-
 function startRecording() {
   console.log("Video recording started...");
   navigator.mediaDevices
@@ -10,33 +8,33 @@ function startRecording() {
     .then(onStream);
 }
 
+const state = reactive({
+  stream: new MediaStream(),
+  playing: false,
+});
+
 function stopRecording() {
-  stream.getTracks().forEach(function (track) {
-    track.stop();
-  });
+  state.stream.getTracks().forEach((track) => track.stop());
+  state.playing = false;
 }
 
-const state = reactive({ text: "" });
-// const faceApiKey = "";
-// const region = "";
+const faceApiKey = "064ebbbbf4c54aeeb8f3758b7c8c3404";
+const region = "westeurope";
 
 function onStream(stream: MediaStream) {
-  const video = document.querySelector("video");
-  if (video) {
-    video.play();
-    video.srcObject = stream;
-  }
+  state.stream = stream;
+  state.playing = true;
 }
 </script>
 
 <template>
-  <button class="btn gap-2" @click="startRecording">
-    <font-awesome-icon icon="camera" />
-    Start Video Recording
-  </button>
-  <button class="btn gap-2" @click="stopRecording">
+  <button class="btn gap-2" @click="stopRecording" v-if="state.playing">
     <font-awesome-icon icon="camera" />
     Stop Video Recording
   </button>
-  <video autoplay id="player" type="video/mp4"></video>
+  <button v-else class="btn gap-2" @click="startRecording">
+    <font-awesome-icon icon="camera" />
+    Start Video Recording
+  </button>
+  <video autoplay :srcObject="state.stream" type="video/mp4"></video>
 </template>

@@ -10,6 +10,7 @@ import { RouterLink } from "vue-router";
       <li><RouterLink to="/">Home</RouterLink></li>
       <li><RouterLink to="/about">About</RouterLink></li>
       <li><RouterLink to="/speech">Speech</RouterLink></li>
+      <li><RouterLink to="/face">Face</RouterLink></li>
     </ul>
   </div>
 </template>
