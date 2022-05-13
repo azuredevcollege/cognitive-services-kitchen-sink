@@ -56,6 +56,6 @@ function onChange(e: any) {
     Start Recording
   </button>
   {{ state.text }}
-  To dos: Add button where language is selected - translate speech to serveral
-  languages (choose from dropdown) - sentiment analysis
+  <!-- To dos: Add button where language is selected - translate speech to serveral
+  languages (choose from dropdown) - sentiment analysis -->
 </template>
