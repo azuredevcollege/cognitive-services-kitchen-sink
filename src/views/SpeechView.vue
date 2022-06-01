@@ -51,6 +51,18 @@ function onChange(e: any) {
 </script>
 
 <template>
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text"><strong>Pick the language you want to transcribe</strong></span>
+    </label>
+    <select class="select select-bordered" v-model="selectedLanguage">
+      <option>de-DE</option>
+      <option>en-US</option>
+      <option>es-ES</option>
+      <option>fr-FR</option>
+      <option>hi-IN</option>
+    </select>
+  </div>
   <button class="btn gap-2" @click="startRecording">
     <font-awesome-icon icon="microphone" />
     Start Recording
