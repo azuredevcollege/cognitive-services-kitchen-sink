@@ -5,6 +5,8 @@ export const useSettingsStore = defineStore({
   state: () => ({
     apikey: "",
     azureregion: "",
+    faceApiKey: "",
+    faceApiEndpoint: "",
   }),
   persist: true,
 });
