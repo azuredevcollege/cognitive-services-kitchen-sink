@@ -18,11 +18,18 @@ function startRecording() {
     .then(onStream);
 }
 
-const state = reactive({ text: "" });
+function stopRecording() {
+  state.stream.getTracks().forEach((track) => track.stop());
+  state.playing = false;
+}
+
+const state = reactive({ text: "", stream: new MediaStream(),playing: false });
 var recognizer: SpeechRecognizer;
 var selectedLanguage = "de-DE";
 
 function onStream(stream: MediaStream) {
+  state.stream = stream;
+  state.playing = true;
   const speechConfig = SpeechConfig.fromSubscription(
     settings.apikey,
     settings.azureregion
@@ -63,7 +70,11 @@ function onChange(e: any) {
       <option>hi-IN</option>
     </select>
   </div>
-  <button class="btn gap-2" @click="startRecording">
+  <button class="btn gap-2" @click="startRecording" v-if="state.playing">
+    <font-awesome-icon icon="microphone" />
+    Start Recording
+  </button>
+  <button class="btn gap-2" @click="startRecording" v-else>
     <font-awesome-icon icon="microphone" />
     Start Recording
   </button>
