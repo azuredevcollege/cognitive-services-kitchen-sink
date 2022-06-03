@@ -46,7 +46,8 @@ function takePicture() {
   console.log("Picture taken...");
 }
 
-function usePicture(blob: Blob) {
+function usePicture(blob: Blob | void) {
+  if (!blob) return;
   console.log("Sending picture to face API...");
   state.image = URL.createObjectURL(blob);
   const credentials = new ApiKeyCredentials({
