@@ -20,7 +20,14 @@ app.mount("#app");
 
 // Import Fontawesome icons
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faMicrophone, faCamera } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMicrophone,
+  faCamera,
+  faVenus,
+  faMars,
+} from "@fortawesome/free-solid-svg-icons";
 
 library.add(faMicrophone);
 library.add(faCamera);
+library.add(faVenus);
+library.add(faMars);

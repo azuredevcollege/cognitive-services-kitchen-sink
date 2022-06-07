@@ -152,33 +152,39 @@ function displayResult(response: FaceDetectWithStreamResponse) {
   <div v-if="state.attributes">
     This is the result: Age: {{ state.attributes?.age }}
     Gender:
-    {{ state.attributes?.gender }}
+    <div v-if="state.attributes.gender == 'female'" class="badge badge-lg">
+      <font-awesome-icon icon="venus" />
+      {{ state.attributes?.gender }}
+    </div>
+    <div v-if="state.attributes.gender == 'male'" class="badge badge-lg">
+      <font-awesome-icon icon="mars" />
+      {{ state.attributes?.gender }}
+    </div>
     Emotion:
-    <div v-if="isAngry" class="badge badge-error gap-2">
+    <div v-if="isAngry" class="badge badge-error gap-2 badge-lg">
       anger: {{ emotionPercentage.anger }}%
     </div>
-    <div v-if="isContempt" class="badge badge-success gap-2">
+    <div v-if="isContempt" class="badge badge-success gap-2 badge-lg">
       contempt: {{ emotionPercentage.contempt }}%
     </div>
-    <div v-if="isDisgust" class="badge badge-error gap-2">
+    <div v-if="isDisgust" class="badge badge-error gap-2 badge-lg">
       disgust: {{ emotionPercentage.disgust }}%
     </div>
-    <div v-if="isHappy" class="badge badge-success gap-2">
+    <div v-if="isHappy" class="badge badge-success gap-2 badge-lg">
       happy: {{ emotionPercentage.happy }}%
     </div>
-    <div v-if="isNeutral" class="badge badge-info gap-2">
+    <div v-if="isNeutral" class="badge badge-info gap-2 badge-lg">
       neutral: {{ emotionPercentage.neutral }}%
     </div>
-    <div v-if="isFear" class="badge badge-error gap-2">
+    <div v-if="isFear" class="badge badge-error gap-2 badge-lg">
       fear: {{ emotionPercentage.fear }}%
     </div>
-    <div v-if="isSad" class="badge badge-error gap-2">
+    <div v-if="isSad" class="badge badge-error gap-2 badge-lg">
       sad: {{ emotionPercentage.sad }}%
     </div>
-    <div v-if="isSurprised" class="badge badge-error gap-2">
+    <div v-if="isSurprised" class="badge badge-error gap-2 badge-lg">
       surprised: {{ emotionPercentage.surprised }}%
     </div>
-    {{ state.attributes?.emotion }}
     Glasses:
     {{ state.attributes?.glasses }}
     Facial hair:
