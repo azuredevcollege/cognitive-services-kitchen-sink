@@ -22,7 +22,7 @@ const state = reactive({
   stream: new MediaStream(),
   playing: false,
   image: "",
-  attributes: {} as FaceAttributes | undefined,
+  attributes: undefined as FaceAttributes | undefined,
 });
 
 function stopRecording() {
@@ -96,9 +96,11 @@ function displayResult(response: FaceDetectWithStreamResponse) {
     Take picture
   </button>
   <img :src="state.image" />
-  This is the result: age: {{ state.attributes?.age }} gender:
-  {{ state.attributes?.gender }} emotion:
-  {{ state.attributes?.emotion }} glasses:
-  {{ state.attributes?.glasses }} facial hair:
-  {{ state.attributes?.facialHair }}
+  <p v-if="state.attributes">
+    This is the result: age: {{ state.attributes?.age }} gender:
+    {{ state.attributes?.gender }} emotion:
+    {{ state.attributes?.emotion }} glasses:
+    {{ state.attributes?.glasses }} facial hair:
+    {{ state.attributes?.facialHair }}
+  </p>
 </template>
