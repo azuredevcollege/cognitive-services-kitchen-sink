@@ -150,13 +150,17 @@ function displayResult(response: FaceDetectWithStreamResponse) {
   </button>
   <img :src="state.image" />
   <div v-if="state.attributes">
-    This is the result: Age: {{ state.attributes?.age }}
+    Age:
+    <div class="badge badge-lg">{{ state.attributes?.age }}</div>
     Gender:
-    <div v-if="state.attributes.gender == 'female'" class="badge badge-lg">
+    <div
+      v-if="state.attributes.gender == 'female'"
+      class="badge badge-lg gap-2"
+    >
       <font-awesome-icon icon="venus" />
       {{ state.attributes?.gender }}
     </div>
-    <div v-if="state.attributes.gender == 'male'" class="badge badge-lg">
+    <div v-if="state.attributes.gender == 'male'" class="badge badge-lg gap-2">
       <font-awesome-icon icon="mars" />
       {{ state.attributes?.gender }}
     </div>
@@ -186,7 +190,34 @@ function displayResult(response: FaceDetectWithStreamResponse) {
       surprised: {{ emotionPercentage.surprised }}%
     </div>
     Glasses:
-    {{ state.attributes?.glasses }}
+    <div
+      v-if="state.attributes.glasses == 'ReadingGlasses'"
+      class="badge badge-lg gap-2"
+    >
+      <font-awesome-icon icon="glasses" />
+      Reading glasses
+    </div>
+    <div
+      v-if="state.attributes.glasses == 'NoGlasses'"
+      class="badge badge-lg gap-2"
+    >
+      <font-awesome-icon icon="glasses" />
+      No glasses
+    </div>
+    <div
+      v-if="state.attributes.glasses == 'SwimmingGoggles'"
+      class="badge badge-lg gap-2"
+    >
+      <font-awesome-icon icon="glasses" />
+      Swimming googles
+    </div>
+    <div
+      v-if="state.attributes.glasses == 'Sunglasses'"
+      class="badge badge-lg gap-2"
+    >
+      <font-awesome-icon icon="glasses" />
+      {{ state.attributes?.glasses }}
+    </div>
     Facial hair:
     {{ state.attributes?.facialHair }}
   </div>

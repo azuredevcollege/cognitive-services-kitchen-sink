@@ -25,9 +25,11 @@ import {
   faCamera,
   faVenus,
   faMars,
+  faGlasses,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faMicrophone);
 library.add(faCamera);
 library.add(faVenus);
 library.add(faMars);
+library.add(faGlasses);
