@@ -7,6 +7,7 @@ import type {
   FaceAttributes,
   FaceAttributeType,
   FaceDetectWithStreamResponse,
+  Gender,
 } from "@azure/cognitiveservices-face/esm/models";
 
 const settings = useSettingsStore();
@@ -24,47 +25,57 @@ const state = reactive({
   image: "",
   attributes: undefined as FaceAttributes | undefined,
 });
-const isAngry = computed(() => {
-  let anger = state.attributes?.emotion?.anger;
-  return anger && anger > 0.1;
-});
-const isHappy = computed(() => {
-  let happy = state.attributes?.emotion?.happiness;
-  return happy && happy > 0.1;
-});
-const isSurprised = computed(() => {
-  let surprised = state.attributes?.emotion?.surprise;
-  return surprised && surprised > 0.1;
-});
-const isSad = computed(() => {
-  let sad = state.attributes?.emotion?.sadness;
-  return sad && sad > 0.1;
-});
-const isDisgust = computed(() => {
-  let disgust = state.attributes?.emotion?.disgust;
-  return disgust && disgust > 0.1;
-});
-const isFear = computed(() => {
-  let fear = state.attributes?.emotion?.fear;
-  return fear && fear > 0.1;
-});
-const isNeutral = computed(() => {
-  let neutral = state.attributes?.emotion?.neutral;
-  return neutral && neutral > 0.1;
-});
-const isContempt = computed(() => {
-  let contempt = state.attributes?.emotion?.contempt;
-  return contempt && contempt > 0.1;
-});
+function generateComputedEquality(
+  attribute: string | undefined,
+  value: string
+) {
+  return computed(() => {
+    return attribute == value;
+  });
+}
+
+function generateComputedThreshold(
+  attribute: number | undefined,
+  threshold = 0.1
+) {
+  return computed(() => {
+    return attribute && attribute > threshold;
+  });
+}
+
+const hasReadingGlasses = generateComputedEquality(
+  state.attributes?.glasses,
+  "ReadingGlasses"
+);
+const hasSunglasses = generateComputedEquality(
+  state.attributes?.glasses,
+  "Sunglasses"
+);
+const hasSwimmingGoggles = generateComputedEquality(
+  state.attributes?.glasses,
+  "SwimmingGoggles"
+);
+const hasNoGlasses = generateComputedEquality(
+  state.attributes?.glasses,
+  "NoGlasses"
+);
+const isFemale = generateComputedEquality(state.attributes?.gender, "female");
+const isMale = generateComputedEquality(state.attributes?.gender, "male");
+const isHappy = generateComputedThreshold(state.attributes?.emotion?.happiness);
+const isSurprised = generateComputedThreshold(
+  state.attributes?.emotion?.surprise
+);
+const isSad = generateComputedThreshold(state.attributes?.emotion?.sadness);
+const isDisgust = generateComputedThreshold(state.attributes?.emotion?.disgust);
+const isFear = generateComputedThreshold(state.attributes?.emotion?.happiness);
+const isNeutral = generateComputedThreshold(state.attributes?.emotion?.neutral);
+const isContempt = generateComputedThreshold(
+  state.attributes?.emotion?.contempt
+);
+const isAngry = generateComputedThreshold(state.attributes?.emotion?.anger);
 
 const emotionPercentage = computed(() => {
   let emotions = state.attributes?.emotion;
-  // for (const emotion in emotions) {
-  //   if (emotions.hasOwnProperty(emotion)) {
-  //     emotions[emotion] = emotions[emotion] * 100;
-  //   }
-  // }
-  // return emotions;
   return {
     anger: emotions?.anger ? (emotions.anger * 100).toFixed(2) : 0,
     disgust: emotions?.disgust ? (emotions.disgust * 100).toFixed(2) : 0,
@@ -75,7 +86,6 @@ const emotionPercentage = computed(() => {
     fear: emotions?.fear ? (emotions.fear * 100).toFixed(2) : 0,
     surprised: emotions?.surprise ? (emotions.surprise * 100).toFixed(2) : 0,
   };
-  // if (emotions?.anger) {return emotions.anger * 100;) else {return 0;}
 });
 
 function stopRecording() {
@@ -153,14 +163,11 @@ function displayResult(response: FaceDetectWithStreamResponse) {
     Age:
     <div class="badge badge-lg">{{ state.attributes?.age }}</div>
     Gender:
-    <div
-      v-if="state.attributes.gender == 'female'"
-      class="badge badge-lg gap-2"
-    >
+    <div v-if="isFemale" class="badge badge-lg gap-2">
       <font-awesome-icon icon="venus" />
-      {{ state.attributes?.gender }}
+      Perceived as female
     </div>
-    <div v-if="state.attributes.gender == 'male'" class="badge badge-lg gap-2">
+    <div v-if="isMale" class="badge badge-lg gap-2">
       <font-awesome-icon icon="mars" />
       {{ state.attributes?.gender }}
     </div>
@@ -190,31 +197,19 @@ function displayResult(response: FaceDetectWithStreamResponse) {
       surprised: {{ emotionPercentage.surprised }}%
     </div>
     Glasses:
-    <div
-      v-if="state.attributes.glasses == 'ReadingGlasses'"
-      class="badge badge-lg gap-2"
-    >
+    <div v-if="hasReadingGlasses" class="badge badge-lg gap-2">
       <font-awesome-icon icon="glasses" />
       Reading glasses
     </div>
-    <div
-      v-if="state.attributes.glasses == 'NoGlasses'"
-      class="badge badge-lg gap-2"
-    >
+    <div v-if="hasNoGlasses" class="badge badge-lg gap-2">
       <font-awesome-icon icon="glasses" />
       No glasses
     </div>
-    <div
-      v-if="state.attributes.glasses == 'SwimmingGoggles'"
-      class="badge badge-lg gap-2"
-    >
+    <div v-if="hasSwimmingGoggles" class="badge badge-lg gap-2">
       <font-awesome-icon icon="glasses" />
-      Swimming googles
+      Swimming goggles
     </div>
-    <div
-      v-if="state.attributes.glasses == 'Sunglasses'"
-      class="badge badge-lg gap-2"
-    >
+    <div v-if="hasSunglasses" class="badge badge-lg gap-2">
       <font-awesome-icon icon="glasses" />
       {{ state.attributes?.glasses }}
     </div>
