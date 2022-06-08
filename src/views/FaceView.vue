@@ -73,6 +73,14 @@ const isContempt = generateComputedThreshold(
   state.attributes?.emotion?.contempt
 );
 const isAngry = generateComputedThreshold(state.attributes?.emotion?.anger);
+const hasMoustache = generateComputedThreshold(
+  state.attributes?.facialHair?.moustache,
+  0.0
+);
+const hasBeard = generateComputedThreshold(state.attributes?.facialHair?.beard);
+const hasSideburns = generateComputedThreshold(
+  state.attributes?.facialHair?.sideburns
+);
 
 const emotionPercentage = computed(() => {
   let emotions = state.attributes?.emotion;
@@ -214,6 +222,17 @@ function displayResult(response: FaceDetectWithStreamResponse) {
       {{ state.attributes?.glasses }}
     </div>
     Facial hair:
-    {{ state.attributes?.facialHair }}
+    <div v-if="hasMoustache" class="badge badge-lg gap-2">
+      <font-awesome-icon icon="glasses" />
+      {{ state.attributes?.facialHair?.moustache }}
+    </div>
+    <div v-if="hasBeard" class="badge badge-lg gap-2">
+      <font-awesome-icon icon="glasses" />
+      {{ state.attributes?.facialHair?.beard }}
+    </div>
+    <div v-if="hasSideburns" class="badge badge-lg gap-2">
+      <font-awesome-icon icon="glasses" />
+      {{ state.attributes?.facialHair?.sideburns }}
+    </div>
   </div>
 </template>
