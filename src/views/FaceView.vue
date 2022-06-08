@@ -25,6 +25,7 @@ const state = reactive({
   image: "",
   attributes: undefined as FaceAttributes | undefined,
 });
+
 function generateComputedEquality(
   attribute: string | undefined,
   value: string
@@ -177,7 +178,7 @@ function displayResult(response: FaceDetectWithStreamResponse) {
     </div>
     <div v-if="isMale" class="badge badge-lg gap-2">
       <font-awesome-icon icon="mars" />
-      {{ state.attributes?.gender }}
+      Perceived as male
     </div>
     Emotion:
     <div v-if="isAngry" class="badge badge-error gap-2 badge-lg">
@@ -223,15 +224,12 @@ function displayResult(response: FaceDetectWithStreamResponse) {
     </div>
     Facial hair:
     <div v-if="hasMoustache" class="badge badge-lg gap-2">
-      <font-awesome-icon icon="glasses" />
       {{ state.attributes?.facialHair?.moustache }}
     </div>
     <div v-if="hasBeard" class="badge badge-lg gap-2">
-      <font-awesome-icon icon="glasses" />
       {{ state.attributes?.facialHair?.beard }}
     </div>
     <div v-if="hasSideburns" class="badge badge-lg gap-2">
-      <font-awesome-icon icon="glasses" />
       {{ state.attributes?.facialHair?.sideburns }}
     </div>
   </div>
