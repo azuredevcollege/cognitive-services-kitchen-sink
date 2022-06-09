@@ -9,8 +9,16 @@ import NavbarBurger from "@/components/NavbarBurger.vue";
     <div class="drawer-content flex flex-col">
       <NavbarBurger />
       <!-- Page content here -->
-      <slot></slot>
+      <div id="content">
+        <slot></slot>
+      </div>
     </div>
     <NavbarDrawer />
   </div>
 </template>
+
+<style>
+#content {
+  margin: 25px;
+}
+</style>
