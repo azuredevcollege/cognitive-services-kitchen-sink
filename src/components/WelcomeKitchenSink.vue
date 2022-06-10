@@ -1,9 +1,13 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="greetings">
     <h1 class="blue">Azure Cognitive Services - Kitchen Sink</h1>
+    <h3 class="blue">
+      Welcome to the Azure Cognitive Services - Kitchen Sink Application. Here,
+      you can try out different cognitive services of the Azure Cognitive
+      Services stack.
+    </h3>
   </div>
 </template>
 
