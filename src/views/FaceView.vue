@@ -222,7 +222,7 @@ function displayResult(response: FaceDetectWithStreamResponse) {
     <div v-if="isSad" class="badge badge-error gap-2 badge-lg">
       sad: {{ emotionPercentage.sad }}%
     </div>
-    <div v-if="isSurprised" class="badge badge-error gap-2 badge-lg">
+    <div v-if="isSurprised" class="badge badge-success gap-2 badge-lg">
       surprised: {{ emotionPercentage.surprised }}%
     </div>
     Glasses:
