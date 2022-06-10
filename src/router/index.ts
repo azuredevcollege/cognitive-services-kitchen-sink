@@ -28,6 +28,11 @@ const router = createRouter({
       component: () => import("../views/FaceView.vue"),
     },
     {
+      path: "/translate",
+      name: "translate",
+      component: () => import("../views/TranslateView.vue"),
+    },
+    {
       path: "/language",
       name: "language",
       component: () => import("../views/LanguageView.vue"),

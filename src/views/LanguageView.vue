@@ -1,58 +1,53 @@
 <script setup lang="ts">
 import { reactive } from "vue";
 import { useSettingsStore } from "@/stores/settings";
-import axios from "axios";
-import { v4 as uuidv4 } from 'uuid';
+import { TextAnalyticsClient, AzureKeyCredential } from "@azure/ai-text-analytics";
 
 const settings = useSettingsStore();
 var language = "";
-var inputsentence = "";
+const endpoint = 'https://' + settings.azureregion + '.api.cognitive.microsoft.com';
 
 function send(){
-  inputsentence = (document.getElementById("inputtext")! as HTMLInputElement).value;
-  translateText();
+  var inputsentence = (document.getElementById("inputtext")! as HTMLInputElement).value;
+  getSentiment(inputsentence);
 }
 
-function translateText(){
-  axios({
-    baseURL: 'https://api.cognitive.microsofttranslator.com',
-    url: '/translate',
-    method: 'post',
-    headers: {
-        'Ocp-Apim-Subscription-Key': settings.apikey,
-        'Ocp-Apim-Subscription-Region': settings.azureregion,
-        'Content-type': 'application/json',
-        'X-ClientTraceId': uuidv4().toString()
-    },
-    params: {
-        'api-version': '3.0',
-        'to': [language]
-    },
-    data: [{
-        'text': inputsentence
-    }],
-    responseType: 'json'
-  }).then(function(response){
-    (document.getElementById("translation")! as HTMLInputElement).value = (JSON.stringify(response.data[0].translations[0]["text"]));
-  })
+async function getSentiment(inputsentence: string) {
+  var sentence = [];
+  sentence.push(inputsentence);
+  const client = new TextAnalyticsClient(endpoint, new AzureKeyCredential(settings.apikey));
+  const sentimentresults = await client.analyzeSentiment(sentence, language);
+  const sentimentresult = sentimentresults[0];
+  if (!sentimentresult.error) {
+    // console.log(result.sentiment);
+    (document.getElementById("negative")! as HTMLInputElement).value = sentimentresult.confidenceScores.negative * 100;
+    (document.getElementById("neutral")! as HTMLInputElement).value = sentimentresult.confidenceScores.neutral * 100;
+    (document.getElementById("positive")! as HTMLInputElement).value = sentimentresult.confidenceScores.positive * 100;
+  } else {
+    console.error(`  Error: ${sentimentresult.error}`);
+  }
 };
 
 </script>
 
 <template>
-  <input type="text" placeholder="I am really interested in AI and happy to try it" class="input input-bordered" id="inputtext"/>
+  <input type="text" placeholder="I think Sophia does an outstanding job." class="input input-bordered" id="inputtext"/>
   <div class="form-control">
     <div class="input-group">
       <select class="select select-bordered" v-model="language">
-        <option disabled selected>Pick a language you want to translate into</option>
+        <option disabled selected>Pick the language you want to analyze</option>
         <option>de</option>
         <option>en</option>
         <option>es</option>
         <option>fr</option>
         <option>hi</option>
       </select>
-      <button class="btn" @click="send">translate</button>
+      <button class="btn" @click="send">analyze</button>
     </div>
-    <input type="text" placeholder="translation" class="input input-bordered" id="translation"/>
+    <div>
+      <progress class="progress progress-error w-56" id="negative" max="100"></progress> <br/>
+      <progress class="progress progress-warning w-56" id="neutral" max="100"></progress> <br/>
+      <progress class="progress progress-success w-56" id="positive" max="100"></progress>
+    </div>
   </div>
 </template>
