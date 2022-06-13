@@ -57,13 +57,20 @@ Lastly, input the _Custom Vision Prediction Key_, which you can find in the Azur
 
 Now that you have set up the image classfier, go to the **Custom Vision** page of your app and test it out by copying an image url. You should receive a response.
 
-## Challenge 3 - Add more languages to translator
+## Challenge 3 - Add more languages to Translator Language (sentiment)
 
-ERKLÄRUNG: API
+So far, you can use the Translator Language services in the web application to translate to English, German, French, Hindi and Spanish and analyze the sentiment. Try adding more languages to the translator and language services by changing the source code under src > views > **TranslateView.vue** and **LanguageView.vue**.
 
-## Challenge 4 - Implement language detection for sentiment
+### Hint
 
-Challenge number 3 is a little more tricky. Remember trying out the language service and doing a sentiment analysis in challenge 1? You had to select the language of the text you wrote to do the sentiment analysis on.
+To program the Translator, we used Rest API calls written in JavaScript. For the language service, we wrote the code using the JavaScript SDK.
+
+- [Langauge support for Translation](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/language-support)
+- [Langauge support for Language Sentiment Analysis](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/sentiment-opinion-mining/language-support)
+
+## Challenge 4 - Implement language detection for Language (sentiment)
+
+Challenge number 4 is a little more tricky. Remember trying out the language service and doing a sentiment analysis in challenge 1? You had to select the language of the text you wrote to do the sentiment analysis on.
 
 This time we will implement automatic language detection. Under _src_ > _views_ > _LanguageView.vue_ alter the source code in such a way that it can detect the language automatically. Check out the [JavaScript SDK documentation](https://docs.microsoft.com/en-us/javascript/api/@azure/ai-text-analytics/?view=azure-node-latest), which will help you get there.
 
