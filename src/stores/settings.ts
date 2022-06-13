@@ -7,6 +7,7 @@ export const useSettingsStore = defineStore({
     azureregion: "",
     faceApiKey: "",
     faceApiEndpoint: "",
+    predictionkey: "",
     predictionendpoint: "",
     publishiterationname: "",
     iterationid: "",
