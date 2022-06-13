@@ -10,7 +10,7 @@ var predictionlength = 0;
 
 function sendPicture() {
   imageUrl = (document.getElementById("imagelink1")! as HTMLInputElement).value;
-  const credentials = new ApiKeyCredentials({ inHeader: { "Prediction-key": settings.apikey } });
+  const credentials = new ApiKeyCredentials({ inHeader: { "Prediction-key": settings.predictionkey } });
   const predictor = new PredictionAPIClient(credentials, settings.predictionendpoint);
   predictor.classifyImageUrl(settings.iterationid, settings.publishiterationname, { url: imageUrl })
     .then(result => {

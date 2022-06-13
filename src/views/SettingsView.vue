@@ -76,6 +76,24 @@ const settings = useSettingsStore();
   <div class="form-control w-full max-w-xs">
     <label class="label">
       <span class="label-text"
+        ><strong>Custom Vision Prediction Key</strong></span
+      >
+    </label>
+    <input
+      v-model="settings.predictionkey"
+      type="text"
+      placeholder="Type here"
+      class="input input-bordered w-full max-w-xs"
+    />
+    <label class="label">
+      <span class="label-text-alt"
+        >Tipp: If you are using a dedicated Custom Vision Service use the Key from the Prediction Service, if you are using a multi-Cognitive Service it's key should be here.</span
+      >
+    </label>
+  </div>
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text"
         ><strong>Azure Custom Vision Prediction Endpoint</strong></span
       >
     </label>
