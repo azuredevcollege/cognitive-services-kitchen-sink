@@ -47,11 +47,15 @@ After the setup is complete, the site is not yet published to GitHub Pages. To s
 
 As you can see on the drawer on the left, there is a service which you haven't tried out yet - Custom Vision. Now, you will get the chance to test the image classifier which you created earlier.
 
-Firstly, go to your flower classifier project in the custom vision studio and click on performance. Then go to the newest training interation and clicke on publish. Once published you can find the prediction endpoint for classfying image URLs. Copy the endpoint and paste it into _Azure Custom Vision Prediction Endpoint_ on the settings page of your app.
+Firstly, go to your flower classifier project in the custom vision studio and click on performance. Then go to the newest training interation and click on publish. You can choose your own Model name or leave the default one. Moreover, choose the custom vision resource which you created earlier. It should end with _-Prediction_.
 
-Moreover, you will need the _Azure Custom Vision Published Name_, whcih you can find in the custom vision studio under **Published as**.
+Once published, you can find the prediction endpoint under _Prediction URL_. Copy the endpoint for classfying image URLs and paste it into the space _Azure Custom Vision Prediction Endpoint_ on the settings page of your app.
 
-Lastly, you
+Moreover, you will need the _Azure Custom Vision Published Name_ and _Iteration id_. You can find both pieces of information in the custom vision studio on the Performance tab of your published training iteration as **Published as** and **Iteration id**.
+
+Lastly, input the _Custom Vision Prediction Key_, which you can find in the Azure Portal. When you created the Custom Vision resource another prediction resource was created for you automatically called _RESOURCENAME-Prediction_. Go to this resource and copy the key from _Keys and Endpoint_.
+
+Now that you have set up the image classfier, go to the **Custom Vision** page of your app and test it out by copying an image url. You should receive a response.
 
 ## Challenge 3 - Add more languages to translator
 
