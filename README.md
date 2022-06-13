@@ -27,7 +27,7 @@ npm run dev
 
 Now that the environment is set up, lets move onto the challenges.
 
-## Challenge 1: Try out the different services
+## Challenge 1 - Try out the different services
 
 After the setup is complete, the site is not yet published to GitHub Pages. To see this, go to _Settings_ and then _Pages_ of your forked _cognitive-services-kitchen-sink_ repository in GitHub.
 
