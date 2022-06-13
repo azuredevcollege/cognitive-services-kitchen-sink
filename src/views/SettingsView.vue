@@ -72,4 +72,59 @@ const settings = useSettingsStore();
       >
     </label>
   </div>
+  <div class="divider" />
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text"
+        ><strong>Azure Custom Vision Prediction Endpoint</strong></span
+      >
+    </label>
+    <input
+      v-model="settings.predictionendpoint"
+      type="text"
+      placeholder="Type here"
+      class="input input-bordered w-full max-w-xs"
+    />
+    <label class="label">
+      <span class="label-text-alt"
+        >Example: https://name.cognitiveservices.azure.com/customvision/v3.0/Prediction/id/classify/iterations/something/url</span
+      >
+    </label>
+  </div>
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text"
+        ><strong>Azure Custom Vision Published Name</strong></span
+      >
+    </label>
+    <input
+      v-model="settings.publishiterationname"
+      type="text"
+      placeholder="Type here"
+      class="input input-bordered w-full max-w-xs"
+    />
+    <label class="label">
+      <span class="label-text-alt"
+        >Example: Something</span
+      >
+    </label>
+  </div>
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text"
+        ><strong>Azure Custom Vision Iteration ID</strong></span
+      >
+    </label>
+    <input
+      v-model="settings.iterationid"
+      type="text"
+      placeholder="Type here"
+      class="input input-bordered w-full max-w-xs"
+    />
+    <label class="label">
+      <span class="label-text-alt"
+        >Example: e000cad0-902x-44f0-x0c0-2xxxe12xxx3</span
+      >
+    </label>
+  </div>
 </template>
