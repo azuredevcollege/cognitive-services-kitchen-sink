@@ -37,11 +37,13 @@ After the setup is complete, the site is not yet published to GitHub Pages. To s
 
    Go to your GitHub page which should be something like YOUR_GITHUB_NAME.github.io/cognitive-services-kitchen-sink/
 
-2. Go to the _Settings_ page and paste in your multi-service Cognitive Services subscription key and select the service's region. Moreover, also paste your Face Service subscription key and endpoint. If you do not have those services yet, first deploy them on the Azure Portal.
+1. From now on, every time you push a commit to your remote repository (GitHub), the GitHub page will be updated.
 
-3. Go to the different pages _Speech_, _Face_, _Translator_ and _Language_ to try out the cognitive services in action. (We will try out the Custom Vision service in the next challenge.)
+1. Go to the _Settings_ page and paste in your multi-service Cognitive Services subscription key and select the service's region. Moreover, also paste your Face Service subscription key and endpoint. If you do not have created those resources yet, first deploy them on the Azure Portal.
 
-4. Open the source code in Visual Studio code and check it out. Under _src_ > _views_ you can find the different pages of the cognitive services. See how these services are deployed using the JavaScript SDK or Rest API calls written in JavaScript.
+1. Go to the different pages _Speech_, _Face_, _Translator_ and _Language_ to try out the cognitive services in action (We will try out the Custom Vision service in the next challenge.). **Info**: The Speech service only works using the GitHub page. It does not work using the local site.
+
+1. Open the source code in Visual Studio code and check it out. Under _src_ > _views_ you can find the different pages of the cognitive services. See how these services are deployed using the JavaScript SDK or Rest API calls written in JavaScript.
 
 ## Challenge 2 - Publish and use your Custom Vision image classifier
 
