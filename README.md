@@ -39,7 +39,7 @@ After the setup is complete, the site is not yet published to GitHub Pages. To s
 
 1. From now on, every time you push a commit to your remote repository (GitHub), the GitHub page will be updated.
 
-1. Go to the _Settings_ page and paste in your multi-service Cognitive Services subscription key and select the service's region. Moreover, also paste your Face Service subscription key and endpoint. If you do not have created those resources yet, first deploy them on the Azure Portal.
+1. Go to the _Settings_ page of your web application and paste in your multi-service Cognitive Services subscription key and select the service's region. Moreover, also paste your Face Service subscription key and endpoint. If you haven't created those resources yet, first deploy them on the Azure Portal.
 
 1. Go to the different pages _Speech_, _Face_, _Translator_ and _Language_ to try out the cognitive services in action (We will try out the Custom Vision service in the next challenge.). **Info**: The Speech service only works using the GitHub page. It does not work using the local site.
 
