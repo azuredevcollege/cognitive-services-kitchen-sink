@@ -59,7 +59,7 @@ Now that you have set up the image classfier, go to the **Custom Vision** page o
 
 ## Challenge 3 - Add more languages to Translator Language (sentiment)
 
-So far, you can use the Translator Language services in the web application to translate to English, German, French, Hindi and Spanish and analyze the sentiment. Try adding more languages to the translator and language services by changing the source code under src > views > **TranslateView.vue** and **LanguageView.vue**.
+So far, you can use the Translator Language services in the web application to translate to English, German, French, Hindi and Spanish and analyze the sentiment. Try adding more languages to the translator and language services by changing the source code under _src_ > _views_ > **TranslateView.vue** and **LanguageView.vue**.
 
 ### Hint
 
@@ -68,11 +68,11 @@ To program the Translator, we used Rest API calls written in JavaScript. For the
 - [Langauge support for Translation](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/language-support)
 - [Langauge support for Language Sentiment Analysis](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/sentiment-opinion-mining/language-support)
 
-## Challenge 4 - Implement language detection for Language (sentiment)
+## Challenge 4 - Implement language detection for Language (sentiment analysis)
 
 Challenge number 4 is a little more tricky. Remember trying out the language service and doing a sentiment analysis in challenge 1? You had to select the language of the text you wrote to do the sentiment analysis on.
 
-This time we will implement automatic language detection. Under _src_ > _views_ > _LanguageView.vue_ alter the source code in such a way that it can detect the language automatically. Check out the [JavaScript SDK documentation](https://docs.microsoft.com/en-us/javascript/api/@azure/ai-text-analytics/?view=azure-node-latest), which will help you get there.
+This time we will implement automatic language detection. Under _src_ > _views_ > **LanguageView.vue** alter the source code in such a way that it can detect the language automatically. Check out the [JavaScript SDK documentation](https://docs.microsoft.com/en-us/javascript/api/@azure/ai-text-analytics/?view=azure-node-latest), which will help you get there.
 
 ## Challenge 5 - Implement another face detection feature
 
