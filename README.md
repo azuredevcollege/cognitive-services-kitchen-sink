@@ -52,11 +52,16 @@ After the setup is complete, the site is not yet published to GitHub Pages (publ
 
    **Optional**: In the meantime, check out this [website](https://docs.github.com/en/pages/getting-started-with-github-pages) to learn more about GitHub Pages.
 
-   Go to your GitHub page. The URL should be YOUR*GITHUB_NAME.github.io/cognitive-services-kitchen-sink/. But you can also find the link on the \_Settings* page of your GitHub Repository.
+   Go to your GitHub page. The URL should be *YOUR_GITHUB_NAME.github.io/cognitive-services-kitchen-sink/*. But you can also find the link on the *Settings* page of your GitHub Repository.
 
 1. From now on, every time you push a commit to your remote repository (GitHub), the GitHub page will be updated.
+   > You push changes by:
+      > - `git add *` adding the changes in the files of the directory where you run this command to staging for the next commit
+      > - `git commit -m "comment on what you want to commit"` prepares the staged content like a snapshot of the current state of your repository
+      > - `git push` publish and upload the changes you staged and commited to the repo in GitHub. This ought to trigger a GitHub action which will rebuild the GitHub page with the newly added Features
 
 1. In order to be able to use the Cognitive Services on the web application, we need to connect them to a Cognitive Services resource. Therefore, go to the _Settings_ page of your web application and paste in your multi-service Cognitive Services subscription key and select the service's region. Moreover, also paste your Face Service subscription key and endpoint. If you haven't created those resources yet, first deploy them on the Azure Portal.
+   > You might not have a multi-service Cognitive Service deployed in Azure. To do so repeat the steps from the last challenge in the Azure portal, search for *Cognitive Services* and create the service. This service combines Vision, Language, Search, and Speech Cognitive Services with a single API key. This allows us to use several functionalities without having to enter too many keys.
 
 1. Go to the different pages _Speech_, _Face_, _Translator_ and _Language_ to try out the cognitive services in action (We will try out the Custom Vision service in the next challenge.).
 
