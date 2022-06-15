@@ -6,14 +6,26 @@ First of all, to use this application, **FORK** the repository using the fork bu
 
 Then **CLONE** this repository to your laptop using the command _git clone_ and the information you find under _Code_ on the top right corner of the repository.
 
-After that, follow the setup instructions.
+```sh
+git clone https://github.com/azuredevcollege/cognitive-services-kitchen-sink.git
+```
+
+After that, follow the setup instructions for your IDE.
 
 ### Recommended IDE Setup
 
-1. [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
+1. Install [VSCode](https://code.visualstudio.com/) + the VSCode Extensions [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) and [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
 2. TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
 
+Using the Terminal open the cloned repository using VSCode by typing:
+
+```sh
+code cognitive-services-kitchen-sink
+```
+
 ### Project Setup
+
+Now that you have the code ready in VSCode, install all necessary packages.
 
 ```sh
 npm install
@@ -21,33 +33,40 @@ npm install
 
 ### Compile and Hot-Reload for Development
 
+To test the app locally, you can run the following code.
+
 ```sh
 npm run dev
 ```
+
+**Disclaimer**: The Speech Service only works by running the web application online. We will get to this later on.
 
 Now that the environment is set up, lets move onto the challenges.
 
 ## Challenge 1 - Try out the different services
 
-After the setup is complete, the site is not yet published to GitHub Pages. To see this, go to _Settings_ and then _Pages_ of your forked _cognitive-services-kitchen-sink_ repository in GitHub.
+After the setup is complete, the site is not yet published to GitHub Pages (published online). To perform this, go to _Settings_ and then _Pages_ of your forked _cognitive-services-kitchen-sink_ repository in GitHub.
 
-1. To publish the site to GitHub Pages, it says: "Make a commit to the gh-pages branch to publish your GitHub Pages site". In order to do so, choose the gh-pages branch as _Source_ and wait a few minutes for your site to be up and running.
+1. To publish the site to GitHub Pages, it says:
+   _"Make a commit to the gh-pages branch to publish your GitHub Pages site"_. In order to do so, choose the gh-pages branch as _Source_ and wait a few minutes for your site to be up and running.
 
    **Optional**: In the meantime, check out this [website](https://docs.github.com/en/pages/getting-started-with-github-pages) to learn more about GitHub Pages.
 
-   Go to your GitHub page which should be something like YOUR_GITHUB_NAME.github.io/cognitive-services-kitchen-sink/
+   Go to your GitHub page. The URL should be YOUR*GITHUB_NAME.github.io/cognitive-services-kitchen-sink/. But you can also find the link on the \_Settings* page of your GitHub Repository.
 
 1. From now on, every time you push a commit to your remote repository (GitHub), the GitHub page will be updated.
 
-1. Go to the _Settings_ page of your web application and paste in your multi-service Cognitive Services subscription key and select the service's region. Moreover, also paste your Face Service subscription key and endpoint. If you haven't created those resources yet, first deploy them on the Azure Portal.
+1. In order to be able to use the Cognitive Services on the web application, we need to connect them to a Cognitive Services resource. Therefore, go to the _Settings_ page of your web application and paste in your multi-service Cognitive Services subscription key and select the service's region. Moreover, also paste your Face Service subscription key and endpoint. If you haven't created those resources yet, first deploy them on the Azure Portal.
 
-1. Go to the different pages _Speech_, _Face_, _Translator_ and _Language_ to try out the cognitive services in action (We will try out the Custom Vision service in the next challenge.). **Info**: The Speech service only works using the GitHub page. It does not work using the local site.
+1. Go to the different pages _Speech_, _Face_, _Translator_ and _Language_ to try out the cognitive services in action (We will try out the Custom Vision service in the next challenge.).
+
+   **Info**: The Speech service only works using the GitHub page. It does not work using the local site.
 
 1. Open the source code in Visual Studio code and check it out. Under _src_ > _views_ you can find the different pages of the cognitive services. See how these services are deployed using the JavaScript SDK or Rest API calls written in JavaScript.
 
 ## Challenge 2 - Publish and use your Custom Vision image classifier
 
-As you can see on the drawer on the left, there is a service which you haven't tried out yet - Custom Vision. Now, you will get the chance to test the image classifier which you created earlier.
+As you can see on the drawer on the left, there is a service which you haven't tried out yet - Custom Vision. Now, you will get the chance to test the image classifier which you created in an earlier challenge.
 
 Firstly, go to your flower classifier project in the custom vision studio and click on performance. Then go to the newest training interation and click on publish. You can choose your own Model name or leave the default one. Moreover, choose the custom vision resource which you created earlier. It should end with _-Prediction_.
 
@@ -55,7 +74,7 @@ Once published, you can find the prediction endpoint under _Prediction URL_. Cop
 
 Moreover, you will need the _Azure Custom Vision Published Name_ and _Iteration id_. You can find both pieces of information in the custom vision studio on the Performance tab of your published training iteration as **Published as** and **Iteration id**.
 
-Lastly, input the _Custom Vision Prediction Key_, which you can find in the Azure Portal. When you created the Custom Vision resource another prediction resource was created for you automatically called _RESOURCENAME-Prediction_. Go to this resource and copy the key from _Keys and Endpoint_.
+Lastly, input the _Custom Vision Prediction Key_, which you can find in the Azure Portal. When you created the Custom Vision resource, another prediction resource was created for you automatically called _RESOURCENAME-Prediction_. Go to this resource and copy the key from the _Keys and Endpoint_ page.
 
 Now that you have set up the image classfier, go to the **Custom Vision** page of your app and test it out by copying an image url. You should receive a response.
 
@@ -68,9 +87,9 @@ So far, you can use the Translator Language services in the web application to t
 To program the Translator, we used Rest API calls written in JavaScript. For the language service, we wrote the code using the JavaScript SDK.
 
 - [Langauge support for Translation](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/language-support)
-- [Langauge support for Language Sentiment Analysis](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/sentiment-opinion-mining/language-support)
+- [Language support for Language Sentiment Analysis](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/sentiment-opinion-mining/language-support)
 
-## Challenge 4 - Implement language detection for Language (sentiment analysis)
+## Challenge 4 - Implement language detection for Language service (sentiment analysis)
 
 Challenge number 4 is a little more tricky. Remember trying out the language service and doing a sentiment analysis in challenge 1? You had to select the language of the text you wrote to do the sentiment analysis on.
 
