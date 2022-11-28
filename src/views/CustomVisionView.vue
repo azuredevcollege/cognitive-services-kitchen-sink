@@ -17,10 +17,10 @@ function sendPicture() {
       var results = result.predictions;
       let displayresult = "";
       predictionlength = Object.keys(results!).length;
-      for (var i = 0; i < predictionlength; i++){
+      for (var i = 0; i < predictionlength; i++) {
         var prob = results![i].probability * 100;
         var name = results![i].tagName;
-        console.log(results![i].probability!*100);
+        console.log(results![i].probability! * 100);
         displayresult += `<progress class="progress w-56" value=` + Math.round(prob) + ` max="100"></progress>` + name + "<br>"
       };
       (document.getElementById("display")! as HTMLInputElement).innerHTML = displayresult;
@@ -33,7 +33,8 @@ function sendPicture() {
 
   <div class="form-control">
     <div class="input-group">
-      <input type="text" placeholder="Link to the image you want to analyze ..." class="input input-bordered" id="imagelink1" />
+      <input type="text" placeholder="Link to the image you want to analyze ..." class="input input-bordered w-1/3"
+        id="imagelink1" />
       <button class="btn" @click="sendPicture">Classify</button>
     </div>
   </div>
