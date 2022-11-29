@@ -31,7 +31,10 @@ async function getSentiment(inputsentence: string) {
 </script>
 
 <template>
-  <input type="text" placeholder="I think Sophia does an outstanding job." class="input input-bordered" id="inputtext"/>
+  
+  <div>
+    <textarea class="textarea textarea-bordered w-1/2 h-24 max-h-48" placeholder="I think Sophia does an outstanding job." id="inputtext"/>
+  </div>
   <div class="form-control">
     <div class="input-group">
       <select class="select select-bordered" v-model="language">

@@ -8,31 +8,31 @@ const settings = useSettingsStore();
 var language = "";
 var inputsentence = "";
 
-function send(){
+function send() {
   inputsentence = (document.getElementById("inputtext")! as HTMLInputElement).value;
   translateText();
 }
 
-function translateText(){
+function translateText() {
   axios({
     baseURL: 'https://api.cognitive.microsofttranslator.com',
     url: '/translate',
     method: 'post',
     headers: {
-        'Ocp-Apim-Subscription-Key': settings.apikey,
-        'Ocp-Apim-Subscription-Region': settings.azureregion,
-        'Content-type': 'application/json',
-        'X-ClientTraceId': uuidv4().toString()
+      'Ocp-Apim-Subscription-Key': settings.apikey,
+      'Ocp-Apim-Subscription-Region': settings.azureregion,
+      'Content-type': 'application/json',
+      'X-ClientTraceId': uuidv4().toString()
     },
     params: {
-        'api-version': '3.0',
-        'to': [language]
+      'api-version': '3.0',
+      'to': [language]
     },
     data: [{
-        'text': inputsentence
+      'text': inputsentence
     }],
     responseType: 'json'
-  }).then(function(response){
+  }).then(function (response) {
     (document.getElementById("translation")! as HTMLInputElement).value = (JSON.stringify(response.data[0].translations[0]["text"]));
   })
 };
@@ -40,8 +40,12 @@ function translateText(){
 </script>
 
 <template>
-  <input type="text" placeholder="I am really interested in AI and happy to try it" class="input input-bordered" id="inputtext"/>
-  <div class="form-control">
+
+  <div>
+    <textarea class="textarea textarea-bordered w-1/2 h-24 max-h-48"
+      placeholder="I am really interested in AI and happy to try it" id="inputtext" />
+  </div>
+  <div class="form-control space-y-2">
     <div class="input-group">
       <select class="select select-bordered" v-model="language">
         <option disabled selected>Pick a language you want to translate into</option>
@@ -53,6 +57,8 @@ function translateText(){
       </select>
       <button class="btn" @click="send">translate</button>
     </div>
-    <input type="text" placeholder="translation" class="input input-bordered" id="translation"/>
+    <div>
+      <input type="text" placeholder="Translation" class="textarea textarea-bordered w-1/2 h-24" id="translation" />
+    </div>
   </div>
 </template>
