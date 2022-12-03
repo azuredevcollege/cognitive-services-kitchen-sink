@@ -26,6 +26,13 @@ async function getSentiment(inputsentence: string) {
   } else {
     console.error(`  Error: ${sentimentresult.error}`);
   }
+  const languageresults = await client.recognizeEntities(sentence);
+  var entitylist = "The entities in this sentence are: ";
+  for (let i = 0; i < languageresults[0].entities.length; i++){
+    var entity = JSON.stringify(languageresults[0].entities[i].text);
+    entitylist = entitylist.concat(entity.slice(1,-1) + ", ");
+  };
+  (document.getElementById("text")! as HTMLMediaElement).innerHTML = entitylist.slice(0,-2);
 };
 
 </script>
@@ -52,5 +59,6 @@ async function getSentiment(inputsentence: string) {
       <progress class="progress progress-warning w-56" id="neutral" max="100"></progress> <br/>
       <progress class="progress progress-success w-56" id="positive" max="100"></progress>
     </div>
+    <p id="text"></p>
   </div>
 </template>
