@@ -80,7 +80,7 @@ function displayObjects(imageUrl, boxes, objects){
     canvas.height = h;
     canvas.width = w;
     context.drawImage(img,0,0);
-    context.strokeStyle = "white";
+    context.strokeStyle = "#2AA69A";
     context.font="30px Arial";
     for (let i = 0; i < (objects.length/4); i++){
       j = i*4;
@@ -103,7 +103,7 @@ function displayText(imageUrl, textboxes, texts){
     canvas.height = h;
     canvas.width = w;
     context.drawImage(img,0,0);
-    context.strokeStyle = "white";
+    context.strokeStyle = "#FBBD23";
     context.font="20px Arial";
     for (let i = 0; i < (texts.length); i++){
       textbox = textboxes[i].split(',');
@@ -121,8 +121,8 @@ function displayText(imageUrl, textboxes, texts){
     <div class="input-group">
       <input type="text" placeholder="Link to the image you want to analyze ..." class="input input-bordered"
         id="imagelink1" />
-      <button class="btn" @click="analyzePicture">Analyze</button>
-      <button class="btn" @click="analyzeText">OCR</button>
+      <button class="btn btn-active btn-accent" @click="analyzePicture">Objects</button>
+      <button class="btn btn-warning" @click="analyzeText">Text</button>
     </div>
   </div>
   <p id="tags"></p>
