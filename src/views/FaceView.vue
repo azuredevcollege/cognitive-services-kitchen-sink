@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { reactive, computed } from "vue";
 import { FaceClient } from "@azure/cognitiveservices-face";
 import { ApiKeyCredentials } from "@azure/ms-rest-js";
@@ -247,4 +247,4 @@ function displayResult(response: FaceDetectWithStreamResponse) {
     <div v-if="hasBeard" class="badge badge-lg gap-2">Beard</div>
     <div v-if="hasSideburns" class="badge badge-lg gap-2">Sideburns</div>
   </div>
-</template>
+</template> -->
