@@ -11,6 +11,7 @@ const endpoint = 'https://' + settings.azureregion + '.api.cognitive.microsoft.c
 
 function analyzePicture() {
     imageUrl = (document.getElementById("imagelink1")! as HTMLInputElement).value;
+    (document.getElementById("image")! as HTMLMediaElement).src = "";
     const computerVisionClient = new ComputerVisionClient(
       new ApiKeyCredentials({ inHeader: { 'Ocp-Apim-Subscription-Key': settings.apikey } }), endpoint);
     computerVisionClient.describeImage(imageUrl)
@@ -32,12 +33,14 @@ function analyzePicture() {
           displayObjects(imageUrl, boxes, objects);
         } else {
           (document.getElementById("image")! as HTMLMediaElement).src = imageUrl;
+          emptyCanvas();
         }
       });
 }
 
 function analyzeText(){
   imageUrl = (document.getElementById("imagelink1")! as HTMLInputElement).value;
+  (document.getElementById("image")! as HTMLMediaElement).src = "";
   const computerVisionClient = new ComputerVisionClient(
     new ApiKeyCredentials({ inHeader: { 'Ocp-Apim-Subscription-Key': settings.apikey } }), endpoint);
   computerVisionClient.describeImage(imageUrl)
@@ -63,6 +66,7 @@ function analyzeText(){
         }
       } else {
         (document.getElementById("image")! as HTMLMediaElement).src = imageUrl;
+        emptyCanvas();
       }
     });
 }
@@ -111,6 +115,12 @@ function displayText(imageUrl, textboxes, texts){
       context.strokeRect(textbox[0], textbox[1], textbox[2], textbox[3]);
     }
   };
+}
+
+function emptyCanvas(){
+  var canvas = document.getElementById("canvas");
+  var context = canvas.getContext("2d");
+  context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 </script>
