@@ -84,11 +84,12 @@ function displayObjects(imageUrl, boxes, objects){
     canvas.height = h;
     canvas.width = w;
     context.drawImage(img,0,0);
-    context.strokeStyle = "#2AA69A";
+    context.strokeStyle = "#FFFFFF";
     context.font="30px Arial";
     for (let i = 0; i < (objects.length/4); i++){
       j = i*4;
-      context.strokeText(objects[j], boxes[j], boxes[j+1]);
+      context.fillStyle = ("#FFFFFF")
+      context.fillText(objects[j], boxes[j], boxes[j+1]);
       context.strokeRect(boxes[j], boxes[j+1], boxes[j+2], boxes[j+3]);
     }
   };
@@ -108,10 +109,11 @@ function displayText(imageUrl, textboxes, texts){
     canvas.width = w;
     context.drawImage(img,0,0);
     context.strokeStyle = "#FBBD23";
-    context.font="20px Arial";
+    context.font="30px Arial";
     for (let i = 0; i < (texts.length); i++){
       textbox = textboxes[i].split(',');
-      context.strokeText(texts[i], textbox[0], textbox[1]);
+      context.fillStyle = ("#FBBD23")
+      context.fillText(texts[i], textbox[0], textbox[1]);
       context.strokeRect(textbox[0], textbox[1], textbox[2], textbox[3]);
     }
   };
