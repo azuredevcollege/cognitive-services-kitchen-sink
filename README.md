@@ -100,14 +100,12 @@ Challenge number 4 is a little more tricky. Remember trying out the language ser
 
 This time we will implement automatic language detection. Under _src_ > _views_ > **LanguageView.vue** alter the source code in such a way that it can detect the language automatically. Check out the [JavaScript SDK documentation](https://docs.microsoft.com/en-us/javascript/api/@azure/ai-text-analytics/?view=azure-node-latest), which will help you get there.
 
-## Challenge 5 - Implement another face detection feature
+## Challenge 5 - Give the probability of recognized objects and text for Computer Vision (detect objects & text recognition)
 
-Currently, the Face Service gives you the following responses:
+Currently, the Computer Vision Service displays 5 information:
 
-- Estimated age
-- Perceived gender
-- Emotion
-- Glasses
-- Facial hair
+- Description of image with an accuracy confidence
+- Object position and object tag (here add the confidence)
+- Text position and detected content (here add the confidence)
 
-Feel free to add the feature headpose, which will give you the response pitch, roll or yaw. Have a look at the [JavaScript SDK documentation](https://docs.microsoft.com/en-us/javascript/api/@azure/cognitiveservices-face/?view=azure-node-latest) for more information.
+To understand which part of the response from the corresponding APIs is important for you take a look at the entire JSON result and slice it to your needs.
