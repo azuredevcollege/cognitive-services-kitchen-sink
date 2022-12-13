@@ -21,7 +21,6 @@ import { RouterLink } from "vue-router";
         <li>
           <RouterLink to="/speech">Speech</RouterLink>
         </li>
-        <!-- <li><RouterLink to="/face">Face</RouterLink></li> -->
         <li>
           <RouterLink to="/translate">Translator</RouterLink>
         </li>
