@@ -37,7 +37,6 @@ const settings = useSettingsStore();
       <option>germanywestcentral</option>
     </select>
   </div>
-  <!-- <div class="divider" />
   <div class="form-control w-full max-w-xs">
     <label class="label">
       <span class="label-text"
