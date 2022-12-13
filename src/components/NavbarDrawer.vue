@@ -27,7 +27,7 @@ import { RouterLink } from "vue-router";
         <li>
           <RouterLink to="/language">Language</RouterLink>
         </li>
-        <!-- <li><RouterLink to="/formrecognizer">Form Recognizer</RouterLink></li> -->
+        <li><RouterLink to="/formrecognizer">Form Recognizer</RouterLink></li>
         <li>
           <RouterLink to="/customvision">Custom Vision</RouterLink>
         </li>
