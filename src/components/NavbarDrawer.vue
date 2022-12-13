@@ -21,14 +21,13 @@ import { RouterLink } from "vue-router";
         <li>
           <RouterLink to="/speech">Speech</RouterLink>
         </li>
-        <!-- <li><RouterLink to="/face">Face</RouterLink></li> -->
         <li>
           <RouterLink to="/translate">Translator</RouterLink>
         </li>
         <li>
           <RouterLink to="/language">Language</RouterLink>
         </li>
-        <!-- <li><RouterLink to="/formrecognizer">Form Recognizer</RouterLink></li> -->
+        <li><RouterLink to="/formrecognizer">Form Recognizer</RouterLink></li>
         <li>
           <RouterLink to="/customvision">Custom Vision</RouterLink>
         </li>
