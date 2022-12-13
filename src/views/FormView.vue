@@ -32,9 +32,9 @@ async function analyzePicture() {
 
   <div class="form-control">
     <div class="input-group">
-      <input type="text" placeholder="Link to the image you want to analyze ..." class="input input-bordered"
+      <input type="text" placeholder="Link to the receipt you want to analyze ..." class="input input-bordered w-1/3"
         id="imagelink1" />
-      <button class="btn btn-active btn-accent" @click="analyzePicture">Analyze</button>
+      <button class="btn" @click="analyzePicture">Analyze</button>
     </div>
   </div>
   <p id="merchant"></p>

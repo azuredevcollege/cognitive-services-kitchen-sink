@@ -131,7 +131,7 @@ function emptyCanvas(){
 
   <div class="form-control">
     <div class="input-group">
-      <input type="text" placeholder="Link to the image you want to analyze ..." class="input input-bordered"
+      <input type="text" placeholder="Link to the image you want to analyze ..." class="input input-bordered w-1/3"
         id="imagelink1" />
       <button class="btn btn-active " @click="analyzePicture">Objects</button>
       <button class="btn btn-info" @click="analyzeText">Text</button>
