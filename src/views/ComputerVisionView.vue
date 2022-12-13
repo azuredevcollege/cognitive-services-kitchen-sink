@@ -133,8 +133,8 @@ function emptyCanvas(){
     <div class="input-group">
       <input type="text" placeholder="Link to the image you want to analyze ..." class="input input-bordered"
         id="imagelink1" />
-      <button class="btn btn-active btn-accent" @click="analyzePicture">Objects</button>
-      <button class="btn btn-warning" @click="analyzeText">Text</button>
+      <button class="btn btn-active " @click="analyzePicture">Objects</button>
+      <button class="btn btn-info" @click="analyzeText">Text</button>
     </div>
   </div>
   <p id="tags"></p>
