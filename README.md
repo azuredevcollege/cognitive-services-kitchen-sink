@@ -63,7 +63,7 @@ After the setup is complete, the site is not yet published to GitHub Pages (publ
 1. In order to be able to use the Cognitive Services on the web application, we need to connect them to a Cognitive Services resource. Therefore, go to the _Settings_ page of your web application and paste in your multi-service Cognitive Services subscription key and select the service's region. Moreover, also paste your Face Service subscription key and endpoint. If you haven't created those resources yet, first deploy them on the Azure Portal.
    > You might not have a multi-service Cognitive Service deployed in Azure. To do so repeat the steps from the last challenge in the Azure portal, search for *Cognitive Services* and create the service. This service combines Vision, Language, Search, and Speech Cognitive Services with a single API key. This allows us to use several functionalities without having to enter too many keys.
 
-1. Go to the different pages _Speech_, _Face_, _Translator_ and _Language_ to try out the cognitive services in action (We will try out the Custom Vision service in the next challenge.).
+1. Go to the different pages _Speech_,  _Translator_, _Computer Vision_, _Form Recognizer_ and _Language_ to try out the cognitive services in action (We will try out the Custom Vision service in the next challenge.).
 
    **Info**: The Speech service only works using the GitHub page. It does not work using the local site.
 
