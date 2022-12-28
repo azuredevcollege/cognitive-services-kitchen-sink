@@ -2,12 +2,27 @@
 import { reactive } from "vue";
 import { useSettingsStore } from "@/stores/settings";
 
-import {
-  SpeechConfig,
+import "microsoft-cognitiveservices-speech-sdk/distrib/browser/microsoft.cognitiveservices.speech.sdk.bundle";
+import type * as SpeechSDKType from "microsoft-cognitiveservices-speech-sdk/distrib/lib/microsoft.cognitiveservices.speech.sdk";
+
+declare global {
+  interface Window {
+    SpeechSDK: {
+      AudioConfig: typeof SpeechSDKType.AudioConfig;
+      OutputFormat: typeof SpeechSDKType.OutputFormat;
+      Recognizer: typeof SpeechSDKType.Recognizer;
+      SpeechConfig: typeof SpeechSDKType.SpeechConfig;
+      SpeechRecognizer: typeof SpeechSDKType.SpeechRecognizer;
+    };
+  }
+}
+const {
   AudioConfig,
+  OutputFormat,
+  Recognizer,
+  SpeechConfig,
   SpeechRecognizer,
-  SpeechRecognitionEventArgs,
-} from "microsoft-cognitiveservices-speech-sdk";
+} = window.SpeechSDK;
 
 const settings = useSettingsStore();
 
@@ -23,7 +38,7 @@ function stopRecording() {
   state.playing = false;
 }
 
-const state = reactive({ text: "", stream: new MediaStream(),playing: false });
+const state = reactive({ text: "", stream: new MediaStream(), playing: false });
 var recognizer: SpeechRecognizer;
 var selectedLanguage = "de-DE";
 
@@ -60,7 +75,9 @@ function onChange(e: any) {
 <template>
   <div class="form-control w-full max-w-xs">
     <label class="label">
-      <span class="label-text"><strong>Pick the language you want to transcribe</strong></span>
+      <span class="label-text"
+        ><strong>Pick the language you want to transcribe</strong></span
+      >
     </label>
     <select class="select select-bordered" v-model="selectedLanguage">
       <option>de-DE</option>
