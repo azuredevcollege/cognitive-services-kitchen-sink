@@ -11,22 +11,23 @@ var inputsentence = "";
 
 function apply() {
   inputsentence = (document.getElementById("inputtext")! as HTMLInputElement).value;
-  if (api=="Summarize Text"){
-    summarize()
-  } else if (api=="Classify Text"){
-    classify()
-  } else if (api=="Generate SQL query"){
-    sql()
-  } else if (api=="Generate product name"){
-    product()
-  }
+  summarize()
+  // if (api=="Summarize Text"){
+  //   summarize()
+  // } else if (api=="Classify Text"){
+  //   classify()
+  // } else if (api=="Generate SQL query"){
+  //   sql()
+  // } else if (api=="Generate product name"){
+  //   product()
+  // }
 }
 
 function summarize(){
   axios({
     method: 'post',
     baseURL: settings.openaiendpoint,
-    url: 'openai/deployments/davinci-002/completions?api-version=2022-12-01',
+    url: 'openai-demo-sophia.openai.azure.com/openai/deployments/davinci-002/completions?api-version=2022-12-01',
     headers: {
       'Content-type': 'application/json',
       'api-key': settings.openaikey
