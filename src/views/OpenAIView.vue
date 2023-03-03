@@ -28,7 +28,7 @@ function analyze(){
       'api-key': settings.openaikey
     },
     data: {
-      'promt': inputsentence,
+      'promt': 'Summarize the following for me: You can attach files using form data. When you repeatedly make API calls that send the same files, Postman will persist your file paths for later use. This also helps you run collections that contain requests requiring file upload. Uploading multiple files each with their own content type is not supported.',
       'max_tokens': 100,
       'temperature': 0.7,
       'frequency_penalty': 0,
