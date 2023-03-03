@@ -109,4 +109,40 @@ const settings = useSettingsStore();
       >
     </label>
   </div>
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text"
+        ><strong>OpenAI API Key</strong></span
+      >
+    </label>
+    <input
+      v-model="settings.openaikey"
+      type="text"
+      placeholder="Type here"
+      class="input input-bordered w-full max-w-xs"
+    />
+    <label class="label">
+      <span class="label-text-alt"
+        >Example: e000cad0-902x-44f0-x0c0-2xxxe12xxx3</span
+      >
+    </label>
+  </div>
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text"
+        ><strong>OpenAI Endpoint</strong></span
+      >
+    </label>
+    <input
+      v-model="settings.openaiendpoint"
+      type="text"
+      placeholder="Type here"
+      class="input input-bordered w-full max-w-xs"
+    />
+    <label class="label">
+      <span class="label-text-alt"
+        >Example: https://docs-test-001.openai.azure.com/</span
+      >
+    </label>
+  </div>
 </template>

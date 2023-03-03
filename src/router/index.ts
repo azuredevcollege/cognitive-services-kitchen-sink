@@ -53,6 +53,11 @@ const router = createRouter({
       component: () => import("../views/ComputerVisionView.vue"),
     },
     {
+      path: "/openai",
+      name: "openai",
+      component: () => import("../views/OpenAIView.vue"),
+    },
+    {
       path: "/settings",
       name: "settings",
       component: () => import("../views/SettingsView.vue"),

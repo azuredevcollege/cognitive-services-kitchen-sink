@@ -35,6 +35,9 @@ import { RouterLink } from "vue-router";
           <RouterLink to="/computervision">Computer Vision</RouterLink>
         </li>
         <li>
+          <RouterLink to="/openai">OpenAI</RouterLink>
+        </li>
+        <li>
           <RouterLink to="/settings">Settings</RouterLink>
         </li>
       </ul>
