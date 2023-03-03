@@ -141,7 +141,7 @@ const settings = useSettingsStore();
     />
     <label class="label">
       <span class="label-text-alt"
-        >Example: https://docs-test-001.openai.azure.com/</span
+        >Example: https://name.openai.azure.com/</span
       >
     </label>
   </div>

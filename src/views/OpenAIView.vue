@@ -8,9 +8,11 @@ import { v4 as uuidv4 } from 'uuid';
 const settings = useSettingsStore();
 var api = "";
 var inputsentence = "";
+var endpoint = "";
 
 function apply() {
   inputsentence = (document.getElementById("inputtext")! as HTMLInputElement).value;
+  endpoint = settings.openaiendpoint;
   if (api=="Summarize Text"){
     summarize()
   } else if (api=="Classify Text"){
@@ -26,7 +28,7 @@ function summarize(){
   axios({
     method: 'post',
     baseURL: settings.openaiendpoint,
-    url: settings.openaiendpoint + '/openai/deployments/davinci-002/completions?api-version=2022-12-01',
+    url: endpoint + '/openai/deployments/davinci-002/completions?api-version=2022-12-01',
     headers: {
       'Content-type': 'application/json',
       'api-key': settings.openaikey
