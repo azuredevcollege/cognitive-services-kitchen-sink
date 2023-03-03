@@ -6,7 +6,6 @@ import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
 
 const settings = useSettingsStore();
-var api = "";
 var inputsentence = "";
 var model = "";
 
@@ -25,7 +24,7 @@ function analyze(){
     baseURL: settings.openaiendpoint,
     url: 'openai/deployments/' + model + '/completions?api-version=2022-12-01',
     headers: {
-      'Content-type': 'application/json',
+      'Content-Type': 'application/json',
       'api-key': settings.openaikey
     },
     data: {
@@ -39,67 +38,11 @@ function analyze(){
       'stop': null
 
     },
-    responseType: '',
   }). then(function (response) {
-    (document.getElementById("result")! as HTMLInputElement).value = (JSON.stringify(response.data[0]));
+    console.log(response)
+    // (document.getElementById("result")! as HTMLInputElement).value = (JSON.stringify(response.data[0]));
   })
 }
-
-function classify(){
-  axios({
-    method: 'post',
-    baseURL: settings.openaiendpoint,
-    url: settings.openaiendpoint + '/openai/deployments/davinci-002/completions?api-version=2022-12-01',
-    headers: {
-      'Content-type': 'application/json',
-      'api-key': settings.openaikey
-    },
-    data: {
-      'promt': inputsentence,
-      'max_tokens': 60,
-      'temperature': 0,
-      'frequency_penalty': 0,
-      'presence_penalty': 0,
-      'top_p': 1,
-      'best_of': 1,
-      'stop': null
-
-    },
-    responseType: '',
-  }). then()
-}
-
-function sql(){
-
-}
-
-function product(){
-
-}
-
-function translateText() {
-  axios({
-    baseURL: settings.openaiendpoint,
-    url: settings.openaiendpoint + '/openai/deployments/' + settings.openainame,
-    method: 'post',
-    headers: {
-      'Ocp-Apim-Subscription-Key': settings.openaikey,
-      'Ocp-Apim-Subscription-Region': settings.azureregion,
-      'Content-type': 'application/json',
-      // 'X-ClientTraceId': uuidv4().toString()
-    },
-    params: {
-      'api-version': '3.0',
-      'to': [language]
-    },
-    data: [{
-      'text': inputsentence
-    }],
-    responseType: 'json'
-  }).then(function (response) {
-    (document.getElementById("translation")! as HTMLInputElement).value = (JSON.stringify(response.data[0].translations[0]["text"]));
-  })
-};
 
 </script>
 
