@@ -8,33 +8,29 @@ import { v4 as uuidv4 } from 'uuid';
 const settings = useSettingsStore();
 var api = "";
 var inputsentence = "";
+var model = "";
 
-function apply() {
+function apply(){
   inputsentence = (document.getElementById("inputtext")! as HTMLInputElement).value;
-  summarize()
-  // if (api=="Summarize Text"){
-  //   summarize()
-  // } else if (api=="Classify Text"){
-  //   classify()
-  // } else if (api=="Generate SQL query"){
-  //   sql()
-  // } else if (api=="Generate product name"){
-  //   product()
-  // }
+  analyze()
 }
 
-function summarize(){
+function deploy(){
+
+}
+
+function analyze(){
   axios({
     method: 'post',
     baseURL: settings.openaiendpoint,
-    url: 'openai-demo-sophia.openai.azure.com/openai/deployments/davinci-002/completions?api-version=2022-12-01',
+    url: 'openai/deployments/' + model + '/completions?api-version=2022-12-01',
     headers: {
       'Content-type': 'application/json',
       'api-key': settings.openaikey
     },
     data: {
       'promt': inputsentence,
-      'max_tokens': 60,
+      'max_tokens': 100,
       'temperature': 0.7,
       'frequency_penalty': 0,
       'presence_penalty': 0,
@@ -115,14 +111,15 @@ function translateText() {
   </div>
   <div class="form-control space-y-2">
     <div class="input-group">
-      <select class="select select-bordered" v-model="api">
-        <option disabled selected>Pick what you want to do with the text</option>
-        <option>Summarize Text</option>
+      <select class="select select-bordered" v-model="model">
+        <option disabled selected>Chose a model</option>
+        <option>davinci-002</option>
         <option>Classify Text</option>
         <option>Generate SQL query</option>
         <option>Generate product name</option>
       </select>
       <button class="btn" @click="apply">apply</button>
+      <button class="btn" @click="deploy">deploy</button>
     </div>
     <div>
       <input type="text" placeholder="Result" class="textarea textarea-bordered w-1/2 h-24" id="result" />
