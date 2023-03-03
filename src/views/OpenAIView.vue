@@ -21,8 +21,8 @@ function deploy(){
 function analyze(){
   axios({
     method: 'post',
-    baseURL: settings.openaiendpoint,
-    url: 'openai/deployments/' + model + '/completions?api-version=2022-12-01',
+    // baseURL: settings.openaiendpoint,
+    url: settings.openaiendpoint + 'openai/deployments/' + model + '/completions?api-version=2022-12-01',
     headers: {
       'Content-Type': 'application/json',
       'api-key': settings.openaikey
