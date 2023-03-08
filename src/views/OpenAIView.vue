@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 const settings = useSettingsStore();
 var inputsentence = "";
 var selected = "";
-var modeloptions = [];
+var modeloptions = <string[]>([]);
 
 function deployments(){
   axios({
@@ -21,18 +21,10 @@ function deployments(){
     }
   }).then(function(response){
     console.log(JSON.stringify(response.data.data[0].id));
-    return {
-      selected: '0',
-      options: [
-        {text: response.data.data[0].id, value: 0},
-        {text: response.data.data[1].id, value: 1},
-        {text: response.data.data[2].id, value: 2}
-      ]
+    for (let i=0; i<response.data.data.length; i++){
+      modeloptions.push(JSON.stringify(response.data.data[i].id))
+      console.log(i);
     }
-    // for (let i=0; i<response.data.data.length; i++){
-    //   modeloptions.push( "text: " + JSON.stringify(response.data.data[i].id) + ", value: " + i)
-    //   console.log(i);
-    // }
     console.log(modeloptions[1]);
   })
 }
@@ -88,7 +80,7 @@ function analyze(){
         <option>Classify Text</option>
         <option>Generate SQL query</option>
         <option>Generate product name</option> -->
-        <option v-for="option in options" :key="option.text">{{ option.text }}</option>
+        <option v-for="option in modeloptions" :key="option">{{ option }}</option>
       </select>
       <button class="btn" @click="apply">apply</button>
       <button class="btn" @click="deployments">get models</button>
