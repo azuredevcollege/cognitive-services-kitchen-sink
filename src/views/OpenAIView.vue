@@ -26,6 +26,7 @@ function deployments(){
       console.log(i);
     }
     console.log(modeloptions[1]);
+    return modeloptions
   })
 }
 
