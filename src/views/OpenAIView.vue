@@ -8,6 +8,27 @@ import { v4 as uuidv4 } from 'uuid';
 const settings = useSettingsStore();
 var inputsentence = "";
 var model = "";
+// var data = JSON.stringify({
+//   "prompt": "Summarize the following for me: You can attach files using form data. When you repeatedly make API calls that send the same files, Postman will persist your file paths for later use. This also helps you run collections that contain requests requiring file upload. Uploading multiple files each with their own content type isn't supported.",
+//   "max_tokens": 100,
+//   "temperature": 0.7,
+//   "frequency_penalty": 0,
+//   "presence_penalty": 0,
+//   "top_p": 1,
+//   "best_of": 1,
+//   "stop": null
+// });
+
+// var config = {
+//   method: 'post',
+//   maxBodyLength: Infinity,
+//   url: settings.openaiendpoint + 'openai/deployments/' + model + '/completions?api-version=2022-12-01',
+//   headers: { 
+//     'Content-Type': 'application/json', 
+//     'api-key': settings.openaikey
+//   },
+//   data : data
+// };
 
 function apply(){
   inputsentence = (document.getElementById("inputtext")! as HTMLInputElement).value;
@@ -18,29 +39,42 @@ function deploy(){
 
 }
 
+// function analyze(){
+//   axios(config)
+//   .then(function (response) {
+//     console.log(JSON.stringify(response.data));
+//   })
+//   .catch(function (error) {
+//     console.log(error);
+//   });
+// }
+
 function analyze(){
   axios({
     method: 'post',
     // baseURL: settings.openaiendpoint,
     url: settings.openaiendpoint + 'openai/deployments/' + model + '/completions?api-version=2022-12-01',
+    maxBodyLength: Infinity,
     headers: {
       'Content-Type': 'application/json',
       'api-key': settings.openaikey
     },
     data: JSON.stringify({
-      promt: 'Summarize the following for me: You can attach files using form data. When you repeatedly make API calls that send the same files, Postman will persist your file paths for later use. This also helps you run collections that contain requests requiring file upload. Uploading multiple files each with their own content type is not supported.',
-      max_tokens: 100,
-      temperature: 0.7,
-      frequency_penalty: 0,
-      presence_penalty: 0,
-      top_p: 1,
-      best_of: 1,
-      stop: null
-
+      "prompt": "Summarize the following for me: You can attach files using form data. When you repeatedly make API calls that send the same files, Postman will persist your file paths for later use. This also helps you run collections that contain requests requiring file upload. Uploading multiple files each with their own content type is not supported.",
+      "max_tokens": 100,
+      "temperature": 0.7,
+      "frequency_penalty": 0,
+      "presence_penalty": 0,
+      "top_p": 1,
+      "best_of": 1,
+      "stop": null
     }),
-  }).then(response => {
-    console.log(response.data)
+  }).then(function(response){
+    console.log(JSON.stringify(response.data));
   })
+  .catch(function(error){
+    console.log(error);
+  });
     // (document.getElementById("result")! as HTMLInputElement).value = (JSON.stringify(response.data[0]));
 }
 
