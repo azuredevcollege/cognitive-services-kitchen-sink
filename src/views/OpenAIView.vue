@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import { reactive } from "vue";
 import { useSettingsStore } from "@/stores/settings";
@@ -25,7 +24,7 @@ function deployments(){
       modeloptions.push(JSON.stringify(response.data.data[i].id))
       console.log(i);
     }
-    console.log(modeloptions[1]);
+    console.log(modeloptions);
     return modeloptions
   })
 }
@@ -81,7 +80,7 @@ function analyze(){
         <option>Classify Text</option>
         <option>Generate SQL query</option>
         <option>Generate product name</option> -->
-        <option v-for="option in modeloptions" :key="option">{{ option }}</option>
+        <option v-for="option in modeloptions" :key="option">Ausgabe: {{ option }}</option>
       </select>
       <button class="btn" @click="apply">apply</button>
       <button class="btn" @click="deployments">get models</button>
