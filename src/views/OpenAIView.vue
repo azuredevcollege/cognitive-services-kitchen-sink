@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const settings = useSettingsStore();
 var inputsentence = "";
-var model = "";
+var selected = "";
 var modeloptions = [];
 
 function deployments(){
@@ -21,11 +21,19 @@ function deployments(){
     }
   }).then(function(response){
     console.log(JSON.stringify(response.data.data[0].id));
-    for (let i=0; i<response.data.data.length; i++){
-      modeloptions.push(JSON.stringify(response.data.data[i].id))
-      console.log(i);
+    return {
+      selected: '0',
+      options: [
+        {text: response.data.data[0].id, value: 0},
+        {text: response.data.data[1].id, value: 1},
+        {text: response.data.data[2].id, value: 2}
+      ]
     }
-    console.log(modeloptions);
+    // for (let i=0; i<response.data.data.length; i++){
+    //   modeloptions.push( "text: " + JSON.stringify(response.data.data[i].id) + ", value: " + i)
+    //   console.log(i);
+    // }
+    console.log(modeloptions[1]);
   })
 }
 
@@ -38,7 +46,7 @@ function analyze(){
   axios({
     method: 'post',
     // baseURL: settings.openaiendpoint,
-    url: settings.openaiendpoint + 'openai/deployments/' + model + '/completions?api-version=2022-12-01',
+    url: settings.openaiendpoint + 'openai/deployments/' + selected + '/completions?api-version=2022-12-01',
     maxBodyLength: Infinity,
     headers: {
       'Content-Type': 'application/json',
@@ -74,13 +82,13 @@ function analyze(){
   </div>
   <div class="form-control space-y-2">
     <div class="input-group">
-      <select class="select select-bordered" v-model="model" id="deployments">
+      <select class="select select-bordered" v-model="selected" id="deployments">
         <!-- <option disabled selected>Chose a model</option>
         <option>davinci-002</option>
         <option>Classify Text</option>
         <option>Generate SQL query</option>
         <option>Generate product name</option> -->
-        <option v-for="option in modeloptions" :key="option">{{ option }}</option>
+        <option v-for="option in options" :key="option.text">{{ option.text }}</option>
       </select>
       <button class="btn" @click="apply">apply</button>
       <button class="btn" @click="deployments">get models</button>
