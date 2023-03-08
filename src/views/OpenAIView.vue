@@ -21,9 +21,10 @@ function deployments(){
     }
   }).then(function(response){
     console.log(JSON.stringify(response.data));
-    console.log(JSON.stringify(response.data[1]));
+    console.log(JSON.stringify(response.data.data[1]));
+    console.log(JSON.stringify(response.data.data[1].id));
     for (let i=0; i<response.data.length; i++){
-      modeloptions.push(JSON.stringify(response.data[i].id))
+      modeloptions.push(JSON.stringify(response.data.data[i].id))
       console.log(i);
     }
     console.log(modeloptions);
