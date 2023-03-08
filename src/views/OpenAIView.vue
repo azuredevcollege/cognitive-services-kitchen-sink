@@ -20,7 +20,7 @@ function deployments(){
       'api-key': settings.openaikey
     }
   }).then(function(response){
-    console.log(response.data[1].id);
+    console.log(JSON.stringify(response.data[1].id));
     for (let i=0; i<response.data.length; i++){
       modeloptions.push(JSON.stringify(response.data[i].id))
       console.log(i);
