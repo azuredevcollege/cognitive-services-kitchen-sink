@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 const settings = useSettingsStore();
 var inputsentence = "";
 var selected = "";
-const modeloptions = [];
+const modeloptions: string[] = [];
 
 function deployments(){
   axios({
@@ -21,12 +21,11 @@ function deployments(){
   }).then(function(response){
     console.log(JSON.stringify(response.data.data[0].id));
     for (let i=0; i<response.data.data.length; i++){
-      modeloptions.push(JSON.stringify(response.data.data[i].id))
+      modeloptions.push((JSON.stringify(response.data.data[i].id)).slice(1,-1))
       console.log(i);
     }
     console.log(modeloptions);
     console.log(typeof modeloptions);
-    console.log(typeof modeloptions[0]);
     return modeloptions
   })
 }
