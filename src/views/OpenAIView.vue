@@ -7,19 +7,20 @@ import { v4 as uuidv4 } from 'uuid';
 const settings = useSettingsStore();
 var inputsentence = "";
 var selected = "";
-const modeloptions: string[] = [];
+var modeloptions: string[] = [];
 
 function deployments(){
   axios({
     method: 'get',
-    maxBodyLength: Infinity,
+    //maxBodyLength: Infinity,
     url: settings.openaiendpoint + 'openai/deployments?api-version=2022-12-01',
     headers: {
       'Content-Type': 'application/json',
       'api-key': settings.openaikey
     }
   }).then(function(response){
-    console.log(JSON.stringify(response.data.data[0].id));
+    modeloptions = [];
+    console.log(JSON.stringify(response.data.id));
     for (let i=0; i<response.data.data.length; i++){
       modeloptions.push((JSON.stringify(response.data.data[i].id)).slice(1,-1))
       console.log(i);
@@ -58,7 +59,7 @@ function analyze(){
     }),
   }).then(function(response){
     console.log(JSON.stringify(response.data));
-    (document.getElementById("result")! as HTMLInputElement).value = (JSON.stringify(response.data.choices));
+    (document.getElementById("result")! as HTMLInputElement).value = response.data.choices[0].text;
   })
   .catch(function(error){
     console.log(error);
@@ -76,19 +77,21 @@ function analyze(){
   <div class="form-control space-y-2">
     <div class="input-group">
       <select class="select select-bordered" v-model="selected" id="deployments">
-        <option selected>davinci-002</option>
-        <!-- <option disabled selected>Chose a model</option>
+        <option disabled selected>Choose a model</option>
+        <!-- 
+          <option selected> </option>
         <option>davinci-002</option>
         <option>Classify Text</option>
         <option>Generate SQL query</option>
         <option>Generate product name</option> -->
-        <option v-for="modeloptions in modeloptions" :key="modeloptions">Ausgabe: {{ modeloptions }}</option>
+        <option v-for="modeloptions in modeloptions" :key="modeloptions">{{ modeloptions }}</option>
+         
       </select>
       <button class="btn" @click="apply">apply</button>
       <button class="btn" @click="deployments">get models</button>
     </div>
     <div>
-      <input type="text" placeholder="Result" class="textarea textarea-bordered w-1/2 h-24" id="result" />
+      <textarea placeholder="Result" class="textarea textarea-bordered w-1/2 h-24" id="result" rows="8"></textarea>
     </div>
   </div>
 </template>
