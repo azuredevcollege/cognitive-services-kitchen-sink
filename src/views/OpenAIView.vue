@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 const settings = useSettingsStore();
 var inputsentence = "";
 var selected = "";
-const modeloptions: string[] = [];
+var modeloptions: string[] = [];
 
 function deployments(){
   axios({
@@ -19,6 +19,7 @@ function deployments(){
       'api-key': settings.openaikey
     }
   }).then(function(response){
+    modeloptions = [];
     console.log(JSON.stringify(response.data.id));
     for (let i=0; i<response.data.data.length; i++){
       modeloptions.push((JSON.stringify(response.data.data[i].id)).slice(1,-1))
@@ -76,8 +77,9 @@ function analyze(){
   <div class="form-control space-y-2">
     <div class="input-group">
       <select class="select select-bordered" v-model="selected" id="deployments">
-        <option selected>  </option>
-        <!-- <option disabled selected>Chose a model</option>
+        <option disabled selected>Choose a model</option>
+        <!-- 
+          <option selected> </option>
         <option>davinci-002</option>
         <option>Classify Text</option>
         <option>Generate SQL query</option>
