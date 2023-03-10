@@ -75,8 +75,8 @@ function analyze(){
   </div>
   <div class="form-control space-y-2">
     <div class="input-group">
-      <select class="select select-bordered" v-model="selected" id="deployment">
-        <option selected></option>
+      <select class="select select-bordered" v-model="selected" id="deployments">
+        <option selected>  </option>
         <!-- <option disabled selected>Chose a model</option>
         <option>davinci-002</option>
         <option>Classify Text</option>
