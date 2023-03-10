@@ -9,6 +9,7 @@ const settings = useSettingsStore();
 var inputsentence = "";
 var selected = "";
 const modeloptions = reactive([]);
+var model = "";
 
 function deployments() {
   axios({
@@ -20,15 +21,30 @@ function deployments() {
     }
   }).then(function (response) {
     modeloptions.length = 0;
-    console.log(JSON.stringify(response.data.id));
     for (let i = 0; i < response.data.data.length; i++) {
-      modeloptions.push((JSON.stringify(response.data.data[i].id)).slice(1, -1))
-      console.log(i);
+      model = (JSON.stringify(response.data.data[i].id)).slice(1, -1);
+      axios({
+        method: 'get',
+        url: settings.openaiendpoint + 'openai/models/' + model + '?api-version=2022-12-01',
+        headers: {
+          'api-key': settings.openaikey
+        }
+      }).then(function (responses) {
+        if (responses.data.capabilities.embeddings == false) {
+          modeloptions.push((JSON.stringify(response.data.data[i].id)).slice(1, -1))
+        }
+      })
     }
-    console.log(modeloptions);
-    console.log(typeof modeloptions);
-  })
+  }).catch(function (error) {
+    if (error.response.status === 404) {
+      (document.getElementById("result")! as HTMLInputElement).value = "An error has occurred. You might need to enter the API key and endpoint of your service under Settings.";
+    } else {
+      (document.getElementById("result")! as HTMLInputElement).value = "An unknown error has occurred. If you are interested in the details have a look at the developer console of your browser.";
+    }
+  });
+  
 }
+
 
 
 function apply() {
@@ -46,7 +62,6 @@ function analyze() {
       'api-key': settings.openaikey
     },
     data: JSON.stringify({
-      // "prompt": "Summarize the following for me: You can attach files using form data. When you repeatedly make API calls that send the same files, Postman will persist your file paths for later use. This also helps you run collections that contain requests requiring file upload. Uploading multiple files each with their own content type is not supported.",
       "prompt": inputsentence,
       "max_tokens": 100,
       "temperature": 0.7,
@@ -59,10 +74,13 @@ function analyze() {
   }).then(function (response) {
     console.log(JSON.stringify(response.data));
     (document.getElementById("result")! as HTMLInputElement).value = response.data.choices[0].text;
-  })
-    .catch(function (error) {
-      console.log(error);
-    });
+  }).catch(function (error) {
+    if (error.response.status === 404) {
+      (document.getElementById("result")! as HTMLInputElement).value = "An error has occurred. You might need to chose a model.";
+    } else {
+      (document.getElementById("result")! as HTMLInputElement).value = "An unknown error has occurred. If you are interested in the details have a look at the developer console of your browser.";
+    }
+  });
 }
 
 </script>
@@ -70,7 +88,7 @@ function analyze() {
 <template>
   <div>
     <textarea class="textarea textarea-bordered w-1/2 h-24 max-h-48"
-      placeholder="I am really interested in AI and happy to try it" id="inputtext"></textarea>
+      placeholder="Enter something here that can be summarized, given as an SQL query ..." id="inputtext"></textarea>
   </div>
   <div class="form-control space-y-2">
     <div class="input-group">
@@ -80,8 +98,8 @@ function analyze() {
           {{ modeloption }}
         </option>
       </select>
-      <button class="btn" @click="apply">apply</button>
-      <button class="btn" @click="deployments">get models</button>
+      <button class="btn btn-active" @click="apply">apply</button>
+      <button class="btn btn-info" @click="deployments">get models</button>
     </div>
     <div>
       <textarea placeholder="Result" class="textarea textarea-bordered w-1/2 h-24" id="result" rows="8"></textarea>
