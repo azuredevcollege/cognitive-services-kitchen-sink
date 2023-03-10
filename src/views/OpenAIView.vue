@@ -3,43 +3,42 @@ import { reactive } from "vue";
 import { useSettingsStore } from "@/stores/settings";
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
+import { ref } from 'vue';
 
 const settings = useSettingsStore();
 var inputsentence = "";
 var selected = "";
-var modeloptions: string[] = [];
+const modeloptions = reactive([]);
 
-function deployments(){
+function deployments() {
   axios({
     method: 'get',
-    //maxBodyLength: Infinity,
     url: settings.openaiendpoint + 'openai/deployments?api-version=2022-12-01',
     headers: {
       'Content-Type': 'application/json',
       'api-key': settings.openaikey
     }
-  }).then(function(response){
-    modeloptions = [];
+  }).then(function (response) {
+    modeloptions.length = 0;
     console.log(JSON.stringify(response.data.id));
-    for (let i=0; i<response.data.data.length; i++){
-      modeloptions.push((JSON.stringify(response.data.data[i].id)).slice(1,-1))
+    for (let i = 0; i < response.data.data.length; i++) {
+      modeloptions.push((JSON.stringify(response.data.data[i].id)).slice(1, -1))
       console.log(i);
     }
     console.log(modeloptions);
     console.log(typeof modeloptions);
-    return modeloptions
   })
 }
 
-function apply(){
+
+function apply() {
   inputsentence = (document.getElementById("inputtext")! as HTMLInputElement).value;
   analyze()
 }
 
-function analyze(){
+function analyze() {
   axios({
     method: 'post',
-    // baseURL: settings.openaiendpoint,
     url: settings.openaiendpoint + 'openai/deployments/' + selected + '/completions?api-version=2022-12-01',
     maxBodyLength: Infinity,
     headers: {
@@ -57,35 +56,29 @@ function analyze(){
       "best_of": 1,
       "stop": null
     }),
-  }).then(function(response){
+  }).then(function (response) {
     console.log(JSON.stringify(response.data));
     (document.getElementById("result")! as HTMLInputElement).value = response.data.choices[0].text;
   })
-  .catch(function(error){
-    console.log(error);
-  });
+    .catch(function (error) {
+      console.log(error);
+    });
 }
 
 </script>
 
 <template>
-
   <div>
     <textarea class="textarea textarea-bordered w-1/2 h-24 max-h-48"
-      placeholder="I am really interested in AI and happy to try it" id="inputtext" />
+      placeholder="I am really interested in AI and happy to try it" id="inputtext"></textarea>
   </div>
   <div class="form-control space-y-2">
     <div class="input-group">
       <select class="select select-bordered" v-model="selected" id="deployments">
         <option disabled selected>Choose a model</option>
-        <!-- 
-          <option selected> </option>
-        <option>davinci-002</option>
-        <option>Classify Text</option>
-        <option>Generate SQL query</option>
-        <option>Generate product name</option> -->
-        <option v-for="modeloptions in modeloptions" :key="modeloptions">{{ modeloptions }}</option>
-         
+        <option v-for="modeloption in modeloptions" :key="modeloption">
+          {{ modeloption }}
+        </option>
       </select>
       <button class="btn" @click="apply">apply</button>
       <button class="btn" @click="deployments">get models</button>
