@@ -51,18 +51,23 @@ After the setup from the compile and hot-reload step is complete, the site is no
 
 1. Activate GitHub Pages and run the workflow to create gh-pages branch:
   
-  Go to _Settings_ and then _Pages_, choose _Deploy from a branch_ and set the main / (root) branch as _Source_ (this should be the only option available for now).
-  
-  After saving, go to _Actions_. You will see how the action builds and deploys your page to GitHub pages. Do not worry if you cannot see the contents of the page yet, we will fix that in the next step.
+First, we need to commit something to the main branch, so that the _Pages_ workflow runs. For this, make a simple change to the README file by clicking on the pencil icon. It can be anything you like, adding a space will suffice. Commit your changes directly to the main branch.
+
+<img width="758" alt="image" src="https://user-images.githubusercontent.com/114384858/227936987-36ddfdda-83f0-4a79-ab70-f2f0acc5aaac.png">
+
+Go to _Actions_ and you should see the _Pages_ workflow running. 
+
+Once it is done, we can move to step 2.
+
 
 2. Change source to gh-pages:
   
-  After the workflow is done, go back to _Settings_, _Pages_ , and set the source to the _gh-pages_ branch and save. You will see under _Actions_ that the workflow runn again.
+  After the workflow is done, a new branch called gh-pages has been created, which we will use as a source for our GitHub page deployment. Go to _Settings_, _Pages_ , and set the source to the _gh-pages_ branch and save. You will see under _Actions_ that the _Pages and Deployment_ workflows runs.
 
    **Optional**: In the meantime, check out this [website](https://docs.github.com/en/pages/getting-started-with-github-pages) to learn more about GitHub Pages.
 
    Once it is done, go to your GitHub page. The URL should be *YOUR_GITHUB_NAME.github.io/cognitive-services-kitchen-sink/*. But you can also find the link on the *Settings* page of your GitHub Repository.
-   
+
    
 1. From now on, every time you push a commit to your remote repository (GitHub), the GitHub page will be updated.
    > You push changes by:
