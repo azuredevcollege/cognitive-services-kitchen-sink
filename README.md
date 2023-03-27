@@ -45,15 +45,25 @@ Now that the environment is set up, lets move onto the challenges.
 
 ## Challenge 1 - Try out the different services
 
-After the setup is complete, the site is not yet published to GitHub Pages (published online). To perform this, go to _Settings_ and then _Pages_ of your forked _cognitive-services-kitchen-sink_ repository in GitHub.
+**First, go to _Settings_ and then _Actions_ , _General_ and under _Workflow Permissions_ make sure that you have set _Read and write permissions_. If not, change your settings and save.**
 
-1. To publish the site to GitHub Pages, it says:
-   _"Make a commit to the gh-pages branch to publish your GitHub Pages site"_. In order to do so, choose the gh-pages branch as _Source_ and wait a few minutes for your site to be up and running.
+After the setup from the previous step is complete, the site is not yet published to GitHub Pages (published online). To perform this, go to _Settings_ and then _Pages_ of your forked _cognitive-services-kitchen-sink_ repository in GitHub.
+
+1. Activate GitHub Pages:
+  
+  In order to do so go to _Settings_ and then _Pages_, choose _Deploy from a branch_ and set the main / (root) branch as _Source_ (this should be the only option available for now).
+  
+  After saving, go to _Actions_. You will see how the action builds and deploys your page to GitHub pages. 
+
+2. Change source to gh-pages:
+  
+  After the workflow is done, go to _Settings_, _Pages_ again, and set the source to the _gh-pages_ branch. Then save and now the workflow will work again.
 
    **Optional**: In the meantime, check out this [website](https://docs.github.com/en/pages/getting-started-with-github-pages) to learn more about GitHub Pages.
 
-   Go to your GitHub page. The URL should be *YOUR_GITHUB_NAME.github.io/cognitive-services-kitchen-sink/*. But you can also find the link on the *Settings* page of your GitHub Repository.
-
+   Once it is done, go to your GitHub page. The URL should be *YOUR_GITHUB_NAME.github.io/cognitive-services-kitchen-sink/*. But you can also find the link on the *Settings* page of your GitHub Repository.
+   
+   
 1. From now on, every time you push a commit to your remote repository (GitHub), the GitHub page will be updated.
    > You push changes by:
       > - `git add *` adding the changes in the files of the directory where you run this command to staging for the next commit
