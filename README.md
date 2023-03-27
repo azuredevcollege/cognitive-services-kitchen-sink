@@ -45,9 +45,9 @@ Now that the environment is set up, lets move onto the challenges.
 
 ## Challenge 1 - Try out the different services
 
-**First, go to _Settings_ and then _Actions_ , _General_ and under _Workflow Permissions_ make sure that you have set _Read and write permissions_. If not, change your settings and save.**
+**Go to _Settings_ and then _Actions_ , _General_ and under _Workflow Permissions_ make sure that you have set _Read and write permissions_. If not, change your settings and save.**
 
-After the setup from the previous step is complete, the site is not yet published to GitHub Pages (published online). To perform this, go to _Settings_ and then _Pages_ of your forked _cognitive-services-kitchen-sink_ repository in GitHub.
+After the setup from the compile and hot-reload step is complete, the site is not yet published to GitHub Pages (published online). In the next two steps, we will activate GitHub pages, run a workflow to create a new gh-pages branch, and deploy the content from this branch to our GitHub page.
 
 1. Activate GitHub Pages and run the workflow to create gh-pages branch:
   
@@ -57,7 +57,7 @@ After the setup from the previous step is complete, the site is not yet publishe
 
 2. Change source to gh-pages:
   
-  After the workflow is done, go back to _Settings_, _Pages_ , and set the source to the _gh-pages_ branch. Then save and now the workflow will work again.
+  After the workflow is done, go back to _Settings_, _Pages_ , and set the source to the _gh-pages_ branch and save. You will see under _Actions_ that the workflow runn again.
 
    **Optional**: In the meantime, check out this [website](https://docs.github.com/en/pages/getting-started-with-github-pages) to learn more about GitHub Pages.
 
