@@ -47,7 +47,7 @@ Now that the environment is set up, lets move onto the challenges.
 
 **Go to _Settings_ and then _Actions_ , _General_ and under _Workflow Permissions_ make sure that you have set _Read and write permissions_. If not, change your settings and save.**
 
-After the setup from the compile and hot-reload step is complete, the site is not yet published to GitHub Pages (published online). In the next two steps, we will activate GitHub pages, run a workflow to create a new gh-pages branch, and deploy the content from this branch to our GitHub page.
+After the setup from the compile and hot-reload step is complete, the site is not yet published to GitHub Pages (published online). In the next two steps, we will run a workflow to create a new gh-pages branch, and deploy the content from this branch to our GitHub page.
 
 1. Activate GitHub Pages and run the workflow to create gh-pages branch:
   
