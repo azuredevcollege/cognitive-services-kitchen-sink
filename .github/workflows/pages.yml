@@ -54,7 +54,7 @@ jobs:
           name: static-website
           path: dist
       - name: Deploy to GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v2
+        uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           build_dir: dist
         env:
