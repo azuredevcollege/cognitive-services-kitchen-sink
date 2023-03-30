@@ -58,6 +58,11 @@ const router = createRouter({
       component: () => import("../views/OpenAIView.vue"),
     },
     {
+      path: "/chatgpt",
+      name: "chatgpt",
+      component: () => import("../views/ChatGPT.vue"),
+    },
+    {
       path: "/settings",
       name: "settings",
       component: () => import("../views/SettingsView.vue"),

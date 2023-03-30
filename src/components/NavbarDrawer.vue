@@ -38,6 +38,9 @@ import { RouterLink } from "vue-router";
           <RouterLink to="/openai">OpenAI</RouterLink>
         </li>
         <li>
+          <RouterLink to="/chatgpt">ChatGPT</RouterLink>
+        </li>
+        <li>
           <RouterLink to="/settings">Settings</RouterLink>
         </li>
       </ul>
